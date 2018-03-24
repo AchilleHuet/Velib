@@ -1,6 +1,7 @@
 package MyVelibProject.Package;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Station {
 	
@@ -45,4 +46,13 @@ public class Station {
 		return count;
 	}
 
+	double occupationRate(Date startTime, Date endTime) {
+		double rate = 0.;
+		for (ParkingSlot slot : this.parkingSlots) {
+			rate += slot.occupationRate(Date startTime, Date endTime);
+		}
+		rate /= this.parkingSize;
+		return rate;
+	}
+	
 }

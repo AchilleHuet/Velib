@@ -1,9 +1,13 @@
 package MyVelibProject.Package;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class ParkingSlot {
 	
 	SlotStatus status;
 	Bicycle bicycle;
+	ArrayList<Operation> history;
 	
 	public ParkingSlot() {
 		//Create an empty parking slot
@@ -49,5 +53,12 @@ public class ParkingSlot {
 		//Parking slot becomes out of order
 		this.status = SlotStatus.Out_of_order;
 	}
+	
+	double occupationRate(Date startTime, Date endTime) {
+		for (Operation operation : this.history) {
+			
+		}
 		
+	}
+	
 }
