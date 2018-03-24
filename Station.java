@@ -8,6 +8,9 @@ public class Station {
 	Integer parkingSize = parkingSlots.size();
 	Location location;
 	StationStatus status;
+	StationType type;
+	Terminal terminal;
+	public long uses;
 	
 	
 	public Station(Integer parkingSize, Location location) {
@@ -41,6 +44,5 @@ public class Station {
 		}
 		return count;
 	}
-	
 
 }
