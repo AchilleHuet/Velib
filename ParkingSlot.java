@@ -60,26 +60,26 @@ public class ParkingSlot {
 		history.add(new Operation(OperationType.fixSlot));
 	}
 	
-	double occupationRate(long startTime, long endTime) {
+	double occupationRate(Date startTime, Date endTime) {
 		int i = this.history.size();
-		while (this.history.get(i).date>endTime) {
+		while (this.history.get(i).date.compareTo(endTime)>0) {
 			i--;
 		}
 		long timeOccupied = 0;
 		if (this.history.get(i).type == OperationType.endRide) {
-			timeOccupied += endTime-this.history.get(i).date;
+			timeOccupied += endTime.compareTo(this.history.get(i).date);
 			i--;
 		}
-		while (this.history.get(i-1).date - startTime > 0) {
+		while (this.history.get(i-1).date.compareTo(startTime) > 0 && i>0) {
 			if (this.history.get(i).type == OperationType.startRide) {
-				timeOccupied += this.history.get(i).date-history.get(i-1).date;
+				timeOccupied += this.history.get(i).date.compareTo(history.get(i-1).date);
 			}
 			i--;
 		}
 		if (this.history.get(i).type == OperationType.startRide) {
-			timeOccupied += this.history.get(i).date-startTime;	
+			timeOccupied += this.history.get(i).date.compareTo(startTime);	
 		}
-		return timeOccupied / (endTime - startTime);
+		return timeOccupied / (endTime.compareTo(startTime));
 	}
 	
 }

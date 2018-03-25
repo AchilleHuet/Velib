@@ -2,20 +2,20 @@ package MyVelibProject.Package;
 
 import java.util.Date;
 
-public abstract class Operation {
+public class Operation {
 	
-	long date;
+	Date date;
 	Bicycle bicycle;
 	OperationType type;
 	
 	Operation(OperationType type) {
-		this.date = new Date().getTime();
+		this.date = new Date();
 		this.type = type;
 	}
 	
 	Operation(OperationType type, Bicycle bicycle) {
 		this.bicycle = bicycle;
-		this.date = new Date().getTime();
+		this.date = new Date();
 		this.type = type;
 	}
 
