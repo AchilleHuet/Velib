@@ -46,10 +46,10 @@ public class Station {
 		return count;
 	}
 
-	double occupationRate(Date startTime, Date endTime) {
+	double occupationRate(long startTime, long endTime) {
 		double rate = 0.;
 		for (ParkingSlot slot : this.parkingSlots) {
-			rate += slot.occupationRate(Date startTime, Date endTime);
+			rate += slot.occupationRate(startTime, endTime);
 		}
 		rate /= this.parkingSize;
 		return rate;

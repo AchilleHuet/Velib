@@ -52,13 +52,34 @@ public class ParkingSlot {
 	public void OutOfOrder() {
 		//Parking slot becomes out of order
 		this.status = SlotStatus.Out_of_order;
+		history.add(new Operation(OperationType.breakSlot));
 	}
 	
-	double occupationRate(Date startTime, Date endTime) {
-		for (Operation operation : this.history) {
-			
+	public void FixSlot() {
+		this.status = SlotStatus.Free;
+		history.add(new Operation(OperationType.fixSlot));
+	}
+	
+	double occupationRate(long startTime, long endTime) {
+		int i = this.history.size();
+		while (this.history.get(i).date>endTime) {
+			i--;
 		}
-		
+		long timeOccupied = 0;
+		if (this.history.get(i).type == OperationType.endRide) {
+			timeOccupied += endTime-this.history.get(i).date;
+			i--;
+		}
+		while (this.history.get(i-1).date - startTime > 0) {
+			if (this.history.get(i).type == OperationType.startRide) {
+				timeOccupied += this.history.get(i).date-history.get(i-1).date;
+			}
+			i--;
+		}
+		if (this.history.get(i).type == OperationType.startRide) {
+			timeOccupied += this.history.get(i).date-startTime;	
+		}
+		return timeOccupied / (endTime - startTime);
 	}
 	
 }

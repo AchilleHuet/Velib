@@ -2,6 +2,6 @@ package MyVelibProject.Package;
 
 public enum OperationType {
 
-	startRide, endRide;
+	startRide, endRide, fixSlot, breakSlot;
 	
 }
