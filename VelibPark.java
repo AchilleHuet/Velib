@@ -8,6 +8,17 @@ public class VelibPark {
 	
 	ArrayList<Station> stationsList;
 	
+	VelibPark(int size, double dimensionX, double dimensionY) {
+		this.stationsList = new ArrayList<Station>();
+		int stationSize = 100;
+		for (int i = 0; i<size; i++) {
+			double randomX = Math.random()*2*dimensionX - dimensionX;
+			double randomY = Math.random()*2*dimensionY - dimensionY;
+			Location location = new Location(randomX, randomY);
+			stationsList.add(new Station(stationSize, location));
+		}
+	}
+	
 	Station mostUsedStation() {
 		long maxUses = 0;
 		Station stationMax = stationsList.get(0);
