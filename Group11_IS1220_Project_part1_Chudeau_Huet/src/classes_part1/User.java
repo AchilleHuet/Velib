@@ -75,6 +75,46 @@ public class User {
 	public Double getTimeCredit() {
 		return timeCredit;
 	}
+
+	public Integer getRides() {
+		return rides;
+	}
+
+	public void setRides(Integer rides) {
+		this.rides = rides;
+	}
+
+	public Double getTime() {
+		return time;
+	}
+
+	public void setTime(Double time) {
+		this.time = time;
+	}
+
+	public Double getCreditEarned() {
+		return creditEarned;
+	}
+
+	public void setCreditEarned(Double creditEarned) {
+		this.creditEarned = creditEarned;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
+	}
+
+	public void setTimeCredit(Double timeCredit) {
+		this.timeCredit = timeCredit;
+	}
 	
 	
 	

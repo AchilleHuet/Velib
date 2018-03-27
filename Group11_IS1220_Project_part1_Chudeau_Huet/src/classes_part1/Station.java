@@ -24,6 +24,92 @@ public class Station {
 		this.location = location;
 	}
 	
+	
+	
+	public ArrayList<ParkingSlot> getParkingSlots() {
+		return parkingSlots;
+	}
+
+
+
+	public void setParkingSlots(ArrayList<ParkingSlot> parkingSlots) {
+		this.parkingSlots = parkingSlots;
+	}
+
+
+
+	public Integer getParkingSize() {
+		return parkingSize;
+	}
+
+
+
+	public void setParkingSize(Integer parkingSize) {
+		this.parkingSize = parkingSize;
+	}
+
+
+
+	public Location getLocation() {
+		return location;
+	}
+
+
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+
+
+	public StationStatus getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(StationStatus status) {
+		this.status = status;
+	}
+
+
+
+	public StationType getType() {
+		return type;
+	}
+
+
+
+	public void setType(StationType type) {
+		this.type = type;
+	}
+
+
+
+	public Terminal getTerminal() {
+		return terminal;
+	}
+
+
+
+	public void setTerminal(Terminal terminal) {
+		this.terminal = terminal;
+	}
+
+
+
+	public long getUses() {
+		return uses;
+	}
+
+
+
+	public void setUses(long uses) {
+		this.uses = uses;
+	}
+
+
+
 	public Integer BicycleNumber() {
 		//counts the total number of bicycles in the station
 		Integer count = 0;

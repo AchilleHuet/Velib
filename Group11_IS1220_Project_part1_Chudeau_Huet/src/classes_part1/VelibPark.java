@@ -19,6 +19,20 @@ public class VelibPark {
 		}
 	}
 	
+	
+	
+	public ArrayList<Station> getStationsList() {
+		return stationsList;
+	}
+
+
+
+	public void setStationsList(ArrayList<Station> stationsList) {
+		this.stationsList = stationsList;
+	}
+
+
+
 	Station mostUsedStation() {
 		long maxUses = 0;
 		Station stationMax = stationsList.get(0);

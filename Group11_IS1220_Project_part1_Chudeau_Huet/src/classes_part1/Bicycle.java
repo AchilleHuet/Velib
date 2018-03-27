@@ -12,4 +12,22 @@ public class Bicycle {
 		counter++;
 	}
 
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
+	}
+
+	public BicycleType getType() {
+		return type;
+	}
+
+	public void setType(BicycleType type) {
+		this.type = type;
+	}
+	
+	
+
 }
