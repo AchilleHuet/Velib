@@ -1,6 +1,7 @@
 package classes_part1;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 
 public class Station {
@@ -24,6 +25,99 @@ public class Station {
 		this.location = location;
 	}
 	
+<<<<<<< HEAD
+	/**
+	 * Returns the total number of bicycles parked in the station
+	 * @return
+	 */
+=======
+	
+	
+	public ArrayList<ParkingSlot> getParkingSlots() {
+		return parkingSlots;
+	}
+
+
+
+	public void setParkingSlots(ArrayList<ParkingSlot> parkingSlots) {
+		this.parkingSlots = parkingSlots;
+	}
+
+
+
+	public Integer getParkingSize() {
+		return parkingSize;
+	}
+
+
+
+	public void setParkingSize(Integer parkingSize) {
+		this.parkingSize = parkingSize;
+	}
+
+
+
+	public Location getLocation() {
+		return location;
+	}
+
+
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+
+
+	public StationStatus getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(StationStatus status) {
+		this.status = status;
+	}
+
+
+
+	public StationType getType() {
+		return type;
+	}
+
+
+
+	public void setType(StationType type) {
+		this.type = type;
+	}
+
+
+
+	public Terminal getTerminal() {
+		return terminal;
+	}
+
+
+
+	public void setTerminal(Terminal terminal) {
+		this.terminal = terminal;
+	}
+
+
+
+	public long getUses() {
+		return uses;
+	}
+
+
+
+	public void setUses(long uses) {
+		this.uses = uses;
+	}
+
+
+
+>>>>>>> cbd63da1a97c9f20fc05af8b60b129a9f2f283f6
 	public Integer BicycleNumber() {
 		//counts the total number of bicycles in the station
 		Integer count = 0;
@@ -35,6 +129,11 @@ public class Station {
 		return count;
 	}
 	
+	/**
+	 * Returns the number of bicycles in the station of the given bicycle type
+	 * @param type instance of BicycleType class
+	 * @return
+	 */
 	public Integer BicycleNumber(BicycleType type) {
 		//counts the number of bicycles of a particular type
 		Integer count = 0;
@@ -46,6 +145,12 @@ public class Station {
 		return count;
 	}
 
+	/**
+	 * Returns the occupation rate defined by (time occupied) / (total time elapsed) over a specified period of times
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
 	double occupationRate(Date startTime, Date endTime) {
 		// returns the occupation rate of the station over a specific period of time
 		double rate = 0.;

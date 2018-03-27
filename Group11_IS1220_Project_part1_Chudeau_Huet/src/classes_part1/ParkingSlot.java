@@ -19,6 +19,26 @@ public class ParkingSlot {
 		this.bicycle = bicycle;
 	}
 	
+	
+	
+	public SlotStatus getStatus() {
+		return status;
+	}
+	public void setStatus(SlotStatus status) {
+		this.status = status;
+	}
+	public Bicycle getBicycle() {
+		return bicycle;
+	}
+	public void setBicycle(Bicycle bicycle) {
+		this.bicycle = bicycle;
+	}
+	public ArrayList<Operation> getHistory() {
+		return history;
+	}
+	public void setHistory(ArrayList<Operation> history) {
+		this.history = history;
+	}
 	public void RemoveBicycle() {
 		//Removes a bicycle from an occupied parking slot
 		if (this.status == SlotStatus.Occupied) {

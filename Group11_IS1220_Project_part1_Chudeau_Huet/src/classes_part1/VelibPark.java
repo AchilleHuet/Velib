@@ -18,7 +18,28 @@ public class VelibPark {
 			stationsList.add(new Station(stationSize, location));
 		}
 	}
+<<<<<<< HEAD
+	/**
+	 * Returns the station with the most uses (rentals and drop-offs)
+	 * @return instance of class Station
+	 */
+=======
 	
+	
+	
+	public ArrayList<Station> getStationsList() {
+		return stationsList;
+	}
+
+
+
+	public void setStationsList(ArrayList<Station> stationsList) {
+		this.stationsList = stationsList;
+	}
+
+
+
+>>>>>>> cbd63da1a97c9f20fc05af8b60b129a9f2f283f6
 	Station mostUsedStation() {
 		long maxUses = 0;
 		Station stationMax = stationsList.get(0);
@@ -31,8 +52,11 @@ public class VelibPark {
 		return stationMax;
 	}
 
-	Station leastOccupiedStation() {
-		// returns the least used station in the past month
+	/**
+	 * Returns the station which has been the least occupied in the past month
+	 * @return
+	 */
+	Station leastOccupiedStation() { 
 		Calendar calendar = Calendar.getInstance();
 		Date nowDate = calendar.getTime();
 		int month = calendar.get(2);
