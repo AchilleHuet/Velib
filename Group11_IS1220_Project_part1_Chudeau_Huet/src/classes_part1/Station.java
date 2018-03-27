@@ -24,14 +24,7 @@ public class Station {
 		}
 		this.location = location;
 	}
-	
-<<<<<<< HEAD
-	/**
-	 * Returns the total number of bicycles parked in the station
-	 * @return
-	 */
-=======
-	
+		
 	
 	public ArrayList<ParkingSlot> getParkingSlots() {
 		return parkingSlots;
@@ -116,8 +109,10 @@ public class Station {
 	}
 
 
-
->>>>>>> cbd63da1a97c9f20fc05af8b60b129a9f2f283f6
+	/**
+	 * Returns the total number of bicycles parked in the station
+	 * @return
+	 */
 	public Integer BicycleNumber() {
 		//counts the total number of bicycles in the station
 		Integer count = 0;
