@@ -20,20 +20,20 @@ public class VelibPark {
 	}
 	
 	
-	
 	public ArrayList<Station> getStationsList() {
 		return stationsList;
 	}
-
-
 
 	public void setStationsList(ArrayList<Station> stationsList) {
 		this.stationsList = stationsList;
 	}
 
-
-
-	Station mostUsedStation() {
+	
+	/**
+	 * returns the most used station of the park
+	 * @return
+	 */
+	public Station mostUsedStation() {
 		long maxUses = 0;
 		Station stationMax = stationsList.get(0);
 		for (Station station : this.stationsList) {
@@ -45,7 +45,12 @@ public class VelibPark {
 		return stationMax;
 	}
 
-	Station leastOccupiedStation() {
+	/**
+	 * returns the least used station in the past month
+	 * @return
+	 */
+	
+	public Station leastOccupiedStation() {
 		// returns the least used station in the past month
 		Calendar calendar = Calendar.getInstance();
 		Date nowDate = calendar.getTime();
