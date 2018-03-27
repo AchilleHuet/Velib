@@ -30,7 +30,7 @@ public class Ride {
 		this.strategy = strategy;
 	}
 
-	double duration() {
+	public double duration() {
 		return this.endTime.compareTo(this.startTime)/1000;
 	}
 
