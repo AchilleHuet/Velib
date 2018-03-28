@@ -16,17 +16,7 @@ public class LocationTest {
 		
 	}
 
-	@Test (expected = Exception.class)
-	public void testGetX() {
-		Location loc = new Location("ce n'est pas un double",46.2);
-	}
-
-	@Test (expected = Exception.class)
-	public void testSetX() {
-		Location loc = new Location(23.1,"ce n'est pas un double");
-	}
-
-
+	
 	@Test
 	public void testDistance() {
 		Location loc1 = new Location(23,2);
