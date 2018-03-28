@@ -14,7 +14,11 @@ public class Station {
 	Terminal terminal;
 	public long uses;
 	
-	
+	/**
+	 * creates a new station with empty parking slots with a specific size and location
+	 * @param parkingSize
+	 * @param location
+	 */
 	public Station(Integer parkingSize, Location location) {
 		//creates a new station with empty parking slots with a specific size and location
 		super();
@@ -30,30 +34,21 @@ public class Station {
 		return parkingSlots;
 	}
 
-
-
 	public void setParkingSlots(ArrayList<ParkingSlot> parkingSlots) {
 		this.parkingSlots = parkingSlots;
 	}
-
-
 
 	public Integer getParkingSize() {
 		return parkingSize;
 	}
 
-
-
 	public void setParkingSize(Integer parkingSize) {
 		this.parkingSize = parkingSize;
 	}
 
-
-
 	public Location getLocation() {
 		return location;
 	}
-
 
 
 	public void setLocation(Location location) {
@@ -61,56 +56,43 @@ public class Station {
 	}
 
 
-
 	public StationStatus getStatus() {
 		return status;
 	}
-
-
 
 	public void setStatus(StationStatus status) {
 		this.status = status;
 	}
 
-
-
 	public StationType getType() {
 		return type;
 	}
-
-
 
 	public void setType(StationType type) {
 		this.type = type;
 	}
 
 
-
 	public Terminal getTerminal() {
 		return terminal;
 	}
 
-
-
 	public void setTerminal(Terminal terminal) {
 		this.terminal = terminal;
 	}
-
-
 
 	public long getUses() {
 		return uses;
 	}
 
 
-
 	public void setUses(long uses) {
 		this.uses = uses;
 	}
 
-
+	
 	/**
-	 * Returns the total number of bicycles parked in the station
+	 * counts the total number of bicycles in the station
 	 * @return
 	 */
 	public Integer BicycleNumber() {
@@ -139,7 +121,7 @@ public class Station {
 		}
 		return count;
 	}
-
+	
 	/**
 	 * Returns the occupation rate defined by (time occupied) / (total time elapsed) over a specified period of times
 	 * @param startTime

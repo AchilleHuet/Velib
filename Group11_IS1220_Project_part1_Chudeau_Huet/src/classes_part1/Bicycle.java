@@ -3,7 +3,7 @@ package classes_part1;
 public class Bicycle {
 		
 	Integer ID;
-	BicycleType type;
+	public BicycleType type;
 	public static int counter = 1;
 	
 	public Bicycle(BicycleType type) {

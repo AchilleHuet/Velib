@@ -8,12 +8,12 @@ public class Operation {
 	Bicycle bicycle;
 	OperationType type;
 	
-	Operation(OperationType type) {
+	public Operation(OperationType type) {
 		this.date = new Date();
 		this.type = type;
 	}
 	
-	Operation(OperationType type, Bicycle bicycle) {
+	public Operation(OperationType type, Bicycle bicycle) {
 		this.bicycle = bicycle;
 		this.date = new Date();
 		this.type = type;

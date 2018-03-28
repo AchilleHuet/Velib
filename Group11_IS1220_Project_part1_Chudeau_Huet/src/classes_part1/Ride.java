@@ -14,7 +14,22 @@ public class Ride {
 	Double cost;
 	Strategy strategy;
 	
-	double duration() {
+	/**
+	 * initializes a ride according to what the customer asked
+	 * @param bicycle
+	 * @param desiredDeparture
+	 * @param desiredArrival
+	 * @param strategy
+	 */
+	public Ride(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, Strategy strategy) {
+		super();
+		this.bicycle = bicycle;
+		this.desiredDeparture = desiredDeparture;
+		this.desiredArrival = desiredArrival;
+		this.strategy = strategy;
+	}
+
+	public double duration() {
 		return this.endTime.compareTo(this.startTime)/1000;
 	}
 
@@ -90,6 +105,15 @@ public class Ride {
 		this.strategy = strategy;
 	}
 	
+	/**
+	 * Returns the distance between start and end of ride
+	 * @return
+	 */
+	public double distance() {
+		Location loc1 = departure.getLocation();
+		Location loc2 = arrival.getLocation();
+		return loc1.Distance(loc2);
+	}
 	
 	
 }

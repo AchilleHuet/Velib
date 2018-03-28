@@ -12,7 +12,12 @@ public class User {
 	Double creditEarned; //total amount of time credit a user has earned
 	Location location;
 	
-	
+	/**
+	 * Creates a new user with specific card type
+	 * @param name
+	 * @param card
+	 * @param location
+	 */
 	public User(String name, Card card, Location location) {
 		//Creates a new user with specific card type
 		super();
@@ -25,6 +30,12 @@ public class User {
 		counter++;
 		this.location = location;
 	}
+	
+	/**
+	 * Creates a new user without a card
+	 * @param name
+	 * @param location
+	 */
 
 	public User(String name, Location location) {
 		//Creates a new user without a card
@@ -39,6 +50,11 @@ public class User {
 		this.location = location;
 	}
 	
+	/**
+	 * Creates a new user without a card
+	 * @param name
+	 */
+	
 	public User(String name) {
 		//Creates a new user without a card
 		super();
@@ -52,7 +68,6 @@ public class User {
 	}
 
 	public Card getCard() {
-		//gives the card type of the user
 		return card;
 	}
 	
