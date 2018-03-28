@@ -14,8 +14,7 @@ public class Terminal {
 	 */
 	public void startRide(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, Strategy strategy) {
 		Ride ride = new Ride(bicycle,desiredDeparture,desiredArrival,strategy);
-		Date date = new Date();
-		ride.startTime = date.getTime(); //problème de typage, mais tout dépend de comment on implémente la date
+		ride.startTime = new Date();
 	}
 	
 	
@@ -24,8 +23,7 @@ public class Terminal {
 	 * @param ride
 	 */
 	public void endRide(Ride ride) {
-		Date date = new Date();
-		ride.endTime = date.getTime();
+		ride.endTime = new Date();
 	}
 
 }

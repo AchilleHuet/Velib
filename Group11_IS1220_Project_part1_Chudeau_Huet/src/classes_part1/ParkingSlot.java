@@ -58,7 +58,6 @@ public class ParkingSlot {
 			System.out.println("This parking slot has no bike to remove");
 		}
 		else {
-			//parking slot is out of order
 			System.out.println("This parking slot is out of order");
 		}
 	}
@@ -68,7 +67,6 @@ public class ParkingSlot {
 	 * @param bicycle
 	 */
 	public void addBicycle(Bicycle bicycle) {
-		//Adds a bicycle to a free parking slot
 		if (this.status == SlotStatus.Free) {
 			this.status = SlotStatus.Occupied;
 			this.bicycle = bicycle;
@@ -86,7 +84,6 @@ public class ParkingSlot {
 	 * parking slot becomes out of order
 	 */
 	public void OutOfOrder() {
-		//Parking slot becomes out of order
 		this.status = SlotStatus.Out_of_order;
 		history.add(new Operation(OperationType.breakSlot));
 	}
@@ -95,8 +92,13 @@ public class ParkingSlot {
 	 * parking slot is fixed, and becomes free
 	 */
 	public void FixSlot() {
-		this.status = SlotStatus.Free;
-		history.add(new Operation(OperationType.fixSlot));
+		if (this.status == SlotStatus.Out_of_order) {
+			this.status = SlotStatus.Free;
+			history.add(new Operation(OperationType.fixSlot));
+		}
+		else {
+			System.out.println("This slot doesn't need to be fixed");
+		}
 	}
 	
 	/**
