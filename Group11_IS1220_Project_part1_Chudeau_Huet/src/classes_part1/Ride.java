@@ -13,6 +13,7 @@ public class Ride {
 	Station arrival;
 	Double cost;
 	RideStrategy strategy;
+	User user;
 	
 	/**
 	 * initializes a ride according to what the customer asked

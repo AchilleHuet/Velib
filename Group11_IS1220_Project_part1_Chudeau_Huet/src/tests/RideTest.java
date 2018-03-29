@@ -22,7 +22,7 @@ public class RideTest {
 		Station desiredDeparture = new Station(12, loc1);
 		Location loc2 = new Location(46.872,94.097);
 		Station desiredArrival = new Station(4, loc2);
-		Strategy strategy = new Strategy();
+		RideStrategy strategy = new AvoidPlusStations();
 		Ride ride = new Ride(bicycle, desiredDeparture, desiredArrival, strategy);
 		ride.setStartTime(new Date(2018, 2, 28, 6, 0, 0));
 		ride.setEndTime(new Date(2018, 2, 28, 7, 30, 0));
