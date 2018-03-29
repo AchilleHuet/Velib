@@ -93,7 +93,12 @@ public class ParkingSlot {
 	 */
 	public void FixSlot() {
 		if (this.status == SlotStatus.Out_of_order) {
-			this.status = SlotStatus.Free;
+			if (this.bicycle == null) {
+				this.status = SlotStatus.Free;
+			}
+			else {
+				this.status = SlotStatus.Occupied;
+				}
 			history.add(new Operation(OperationType.fixSlot));
 		}
 		else {
