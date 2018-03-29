@@ -2,6 +2,8 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import classes_part1.Bicycle;
@@ -22,11 +24,10 @@ public class RideTest {
 		Station desiredArrival = new Station(4, loc2);
 		Strategy strategy = new Strategy();
 		Ride ride = new Ride(bicycle, desiredDeparture, desiredArrival, strategy);
-		ride.setStartTime("comment on fait une date ???");
-		ride.setEndTime("hein ???");
+		ride.setStartTime(new Date(2018, 2, 28, 6, 0, 0));
+		ride.setEndTime(new Date(2018, 2, 28, 7, 30, 0));
 		double dur = ride.duration();
-		assertTrue(dur == ??);
-		
+		assertTrue(dur == 5400.);
 		
 	}
 

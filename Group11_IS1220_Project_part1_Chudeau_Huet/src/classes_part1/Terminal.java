@@ -12,7 +12,7 @@ public class Terminal {
 	 * @param desiredArrival
 	 * @param strategy
 	 */
-	public void startRide(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, Strategy strategy) {
+	public void startRide(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, RideStrategy strategy) {
 		Ride ride = new Ride(bicycle,desiredDeparture,desiredArrival,strategy);
 		ride.startTime = new Date();
 	}
