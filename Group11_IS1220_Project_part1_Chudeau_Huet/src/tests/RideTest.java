@@ -6,12 +6,13 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import classes_part1.AvoidPlusStations;
 import classes_part1.Bicycle;
 import classes_part1.BicycleType;
 import classes_part1.Location;
 import classes_part1.Ride;
 import classes_part1.Station;
-import classes_part1.Strategy;
+import classes_part1.RideStrategy;
 
 public class RideTest {
 
@@ -20,7 +21,7 @@ public class RideTest {
 		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
 		Location loc1 = new Location(23.456,78.902);
 		Station desiredDeparture = new Station(12, loc1);
-		Location loc2 = new Location(46.872,94.097);
+		Location loc2 = new Location(46.872, 94.097);
 		Station desiredArrival = new Station(4, loc2);
 		RideStrategy strategy = new AvoidPlusStations();
 		Ride ride = new Ride(bicycle, desiredDeparture, desiredArrival, strategy);

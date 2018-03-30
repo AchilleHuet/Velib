@@ -1,5 +1,7 @@
 package classes_part1;
 
-public class Policy {
+public interface Policy {
+	
+	void PlanRide();
 
 }
