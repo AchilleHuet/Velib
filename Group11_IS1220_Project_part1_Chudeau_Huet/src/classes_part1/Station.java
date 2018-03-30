@@ -120,6 +120,21 @@ public class Station {
 		return count;
 	}
 	
+	
+	/**
+	 * Counts the number of free slots in a station
+	 * @return 
+	 */
+	public int FreeSlots() {
+		int count = 0;
+		for (ParkingSlot slot : this.parkingSlots) {
+			if (slot.status == SlotStatus.Free) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+	
 	/**
 	 * Calculates the occupation rate defined by (time occupied) / (total time elapsed) over a specified period of times
 	 * @param startTime instance of Date class, time at which a bicycle is taken from its parking slot
