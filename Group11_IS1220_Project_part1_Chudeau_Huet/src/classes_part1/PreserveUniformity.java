@@ -6,4 +6,10 @@ public class PreserveUniformity implements Policy {
 		
 	}
 
+	@Override
+	public void PlanRide() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -13,6 +13,7 @@ public class Station {
 	StationType type;
 	Terminal terminal;
 	public long uses;
+	double occupationRate;
 	
 	/**
 	 * creates a new station with empty parking slots with a specific size and location
@@ -89,8 +90,13 @@ public class Station {
 	public void setUses(long uses) {
 		this.uses = uses;
 	}
-
 	
+		
+	public double getOccupationRate() {
+		return occupationRate;
+	}
+
+
 	/**
 	 * counts the total number of bicycles in the station
 	 * @return
@@ -141,13 +147,13 @@ public class Station {
 	 * @param endTime instance of Date class, time at which a bicycle is returned to a parking slot
 	 * @return
 	 */
-	double occupationRate(Date startTime, Date endTime) {
-		double rate = 0.;
+	public void calculateOccupationRate(Date startTime, Date endTime) {
+		this.occupationRate = 0.;
 		for (ParkingSlot slot : this.parkingSlots) {
-			rate += slot.occupationRate(startTime, endTime);
+			this.occupationRate += slot.occupationRate(startTime, endTime);
 		}
-		rate /= this.parkingSize;
-		return rate;
+		this.occupationRate /= this.parkingSize;
+		
 	}
 	
 }

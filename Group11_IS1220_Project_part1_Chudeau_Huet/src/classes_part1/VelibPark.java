@@ -19,7 +19,8 @@ public class VelibPark {
 	 * @param ymin
 	 * @param ymax
 	 */
-	VelibPark(double xmin, double xmax, double ymin, double ymax) {
+	public VelibPark(double xmin, double xmax, double ymin, double ymax) {
+		super();
 		this.stationsList = new ArrayList<Station>();
 		this.xmin = xmin;
 		this.xmax = xmax;
@@ -96,11 +97,13 @@ public class VelibPark {
 		calendar.set(2,month-1);
 		}
 		Date thenDate = calendar.getTime();
-		double minRate = stationsList.get(0).occupationRate(thenDate, nowDate);
+		stationsList.get(0).calculateOccupationRate(thenDate, nowDate);
+		double minRate = stationsList.get(0).getOccupationRate();
 		Station minStation = stationsList.get(0);
 		for (Station station : stationsList) {
-			if (station.occupationRate(thenDate, nowDate) < minRate) {
-				minRate = station.occupationRate(thenDate, nowDate);
+			station.calculateOccupationRate(thenDate, nowDate);
+			if (station.getOccupationRate() < minRate) {
+				minRate = station.getOccupationRate();
 				minStation = station;
 			}
 		}
