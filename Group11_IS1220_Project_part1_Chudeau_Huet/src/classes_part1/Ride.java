@@ -12,7 +12,8 @@ public class Ride {
 	Station departure;
 	Station arrival;
 	Double cost;
-	Strategy strategy;
+	RideStrategy strategy;
+	User user;
 	
 	/**
 	 * initializes a ride according to what the customer asked
@@ -21,7 +22,7 @@ public class Ride {
 	 * @param desiredArrival
 	 * @param strategy
 	 */
-	public Ride(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, Strategy strategy) {
+	public Ride(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, RideStrategy strategy) {
 		super();
 		this.bicycle = bicycle;
 		this.desiredDeparture = desiredDeparture;
@@ -97,11 +98,11 @@ public class Ride {
 		this.cost = cost;
 	}
 
-	public Strategy getStrategy() {
+	public RideStrategy getStrategy() {
 		return strategy;
 	}
 
-	public void setStrategy(Strategy strategy) {
+	public void setStrategy(RideStrategy strategy) {
 		this.strategy = strategy;
 	}
 	

@@ -1,5 +1,7 @@
 package classes_part1;
 
-public class RideStrategy {
+public interface RideStrategy {
+	
+	Station Destination(Location desiredArrival, Station start, VelibPark park);
 
 }

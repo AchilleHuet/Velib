@@ -7,22 +7,55 @@ import java.util.Date;
 public class VelibPark {
 	
 	ArrayList<Station> stationsList;
+	double xmin;
+	double xmax;
+	double ymin;
+	double ymax;
 	
-	VelibPark(int size, double dimensionX, double dimensionY) {
+	/**
+	 * Creates a new empty Velib park 
+	 * @param xmin
+	 * @param xmax
+	 * @param ymin
+	 * @param ymax
+	 */
+	VelibPark(double xmin, double xmax, double ymin, double ymax) {
 		this.stationsList = new ArrayList<Station>();
+		this.xmin = xmin;
+		this.xmax = xmax;
+		this.ymin = ymin;
+		this.ymax = ymax;
+	}
+	
+	/**
+	 * fills the Velib park with a number of randomly generated stations
+	 * @param size : Number of stations
+	 */
+	public void fillPark(int size) {
 		int stationSize = 100;
 		for (int i = 0; i<size; i++) {
-			double randomX = Math.random()*2*dimensionX - dimensionX;
-			double randomY = Math.random()*2*dimensionY - dimensionY;
+			double randomX = Math.random()*(this.xmax-this.xmin) + this.xmin;
+			double randomY = Math.random()*(this.ymax-this.ymin) + this.ymin;
 			Location location = new Location(randomX, randomY);
-			stationsList.add(new Station(stationSize, location));
+			this.stationsList.add(new Station(stationSize, location));
+		}
+	}
+	
+	/**
+	 * fills the Velib Park with a number of randomly generated stations of a given size
+	 * @param size : Number of stations
+	 * @param stationSize : Number of parking slots in each station
+	 */
+	public void fillPark(int size, int stationSize) {
+		for (int i = 0; i<size; i++) {
+			double randomX = Math.random()*(this.xmax-this.xmin) + this.xmin;
+			double randomY = Math.random()*(this.ymax-this.ymin) + this.ymin;
+			Location location = new Location(randomX, randomY);
+			this.stationsList.add(new Station(stationSize, location));
 		}
 	}
 
-	/**
-	 * Returns the station with the most uses (rentals and drop-offs)
-	 * @return instance of class Station
-	 */
+	
 	public ArrayList<Station> getStationsList() {
 		return stationsList;
 	}

@@ -17,16 +17,16 @@ public class Station {
 	/**
 	 * creates a new station with empty parking slots with a specific size and location
 	 * @param parkingSize
-	 * @param location
+	 * @param location instance of class Location
 	 */
 	public Station(Integer parkingSize, Location location) {
-		//creates a new station with empty parking slots with a specific size and location
 		super();
 		this.parkingSlots = new ArrayList<ParkingSlot>();
 		for (int i=0; i<parkingSize; i++) {
 			this.parkingSlots.add(new ParkingSlot());
 		}
 		this.location = location;
+		this.uses = 0;
 	}
 		
 	
@@ -96,7 +96,6 @@ public class Station {
 	 * @return
 	 */
 	public Integer BicycleNumber() {
-		//counts the total number of bicycles in the station
 		Integer count = 0;
 		for (ParkingSlot slot:parkingSlots) {
 			if (slot.status == SlotStatus.Occupied) {
@@ -107,12 +106,11 @@ public class Station {
 	}
 	
 	/**
-	 * Returns the number of bicycles in the station of the given bicycle type
+	 * Counts number of bicycles in the station of the given bicycle type
 	 * @param type instance of BicycleType class
 	 * @return
 	 */
 	public Integer BicycleNumber(BicycleType type) {
-		//counts the number of bicycles of a particular type
 		Integer count = 0;
 		for (ParkingSlot slot:parkingSlots) {
 			if (slot.status == SlotStatus.Occupied && slot.bicycle.type == type) {
@@ -122,14 +120,28 @@ public class Station {
 		return count;
 	}
 	
+	
 	/**
-	 * Returns the occupation rate defined by (time occupied) / (total time elapsed) over a specified period of times
-	 * @param startTime
-	 * @param endTime
+	 * Counts the number of free slots in a station
+	 * @return 
+	 */
+	public int FreeSlots() {
+		int count = 0;
+		for (ParkingSlot slot : this.parkingSlots) {
+			if (slot.status == SlotStatus.Free) {
+				count += 1;
+			}
+		}
+		return count;
+	}
+	
+	/**
+	 * Calculates the occupation rate defined by (time occupied) / (total time elapsed) over a specified period of times
+	 * @param startTime instance of Date class, time at which a bicycle is taken from its parking slot
+	 * @param endTime instance of Date class, time at which a bicycle is returned to a parking slot
 	 * @return
 	 */
 	double occupationRate(Date startTime, Date endTime) {
-		// returns the occupation rate of the station over a specific period of time
 		double rate = 0.;
 		for (ParkingSlot slot : this.parkingSlots) {
 			rate += slot.occupationRate(startTime, endTime);
