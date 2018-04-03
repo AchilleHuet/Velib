@@ -101,7 +101,7 @@ public class Station {
 	 * counts the total number of bicycles in the station
 	 * @return
 	 */
-	public Integer BicycleNumber() {
+	public Integer BicycleCount() {
 		Integer count = 0;
 		for (ParkingSlot slot:parkingSlots) {
 			if (slot.status == SlotStatus.Occupied) {
@@ -116,7 +116,7 @@ public class Station {
 	 * @param type instance of BicycleType class
 	 * @return
 	 */
-	public Integer BicycleNumber(BicycleType type) {
+	public Integer BicycleCount(BicycleType type) {
 		Integer count = 0;
 		for (ParkingSlot slot:parkingSlots) {
 			if (slot.status == SlotStatus.Occupied && slot.bicycle.type == type) {

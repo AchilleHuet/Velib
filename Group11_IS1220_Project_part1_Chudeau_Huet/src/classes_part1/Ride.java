@@ -7,13 +7,30 @@ public class Ride {
 	Date startTime;
 	Date endTime;
 	Bicycle bicycle;
-	Station desiredDeparture;
-	Station desiredArrival;
+	BicycleType bicycleType;
+	Station suggestedDeparture;
+	Station suggestedArrival;
 	Station departure;
 	Station arrival;
+	Location destination;
 	Double cost;
-	RideStrategy strategy;
+	Policy policy;
 	User user;
+	VelibPark park;
+	
+	/**
+	 * Initializes a ride according to the costumer's destination and needs
+	 * @param user
+	 * @param destination
+	 * @param type
+	 * @param park
+	 */
+	public Ride(User user, Location destination, BicycleType type, VelibPark park, Policy policy) {
+		super();
+		this.user = user;
+		this.destination = destination;
+		this.bicycleType = type;
+	}
 	
 	/**
 	 * initializes a ride according to what the customer asked
@@ -22,12 +39,12 @@ public class Ride {
 	 * @param desiredArrival
 	 * @param strategy
 	 */
-	public Ride(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, RideStrategy strategy) {
+	public Ride(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, Policy policy) {
 		super();
 		this.bicycle = bicycle;
-		this.desiredDeparture = desiredDeparture;
-		this.desiredArrival = desiredArrival;
-		this.strategy = strategy;
+		this.suggestedDeparture = desiredDeparture;
+		this.suggestedArrival = desiredArrival;
+		this.policy = policy;
 	}
 
 	public double duration() {
@@ -59,19 +76,19 @@ public class Ride {
 	}
 
 	public Station getDesiredDeparture() {
-		return desiredDeparture;
+		return suggestedDeparture;
 	}
 
 	public void setDesiredDeparture(Station desiredDeparture) {
-		this.desiredDeparture = desiredDeparture;
+		this.suggestedDeparture = desiredDeparture;
 	}
 
 	public Station getDesiredArrival() {
-		return desiredArrival;
+		return suggestedArrival;
 	}
 
 	public void setDesiredArrival(Station desiredArrival) {
-		this.desiredArrival = desiredArrival;
+		this.suggestedArrival = desiredArrival;
 	}
 
 	public Station getDeparture() {
@@ -98,12 +115,12 @@ public class Ride {
 		this.cost = cost;
 	}
 
-	public RideStrategy getStrategy() {
-		return strategy;
+	public Policy getPolicy() {
+		return policy;
 	}
 
-	public void setStrategy(RideStrategy strategy) {
-		this.strategy = strategy;
+	public void setStrategy(Policy policy) {
+		this.policy = policy;
 	}
 	
 	/**
@@ -114,6 +131,10 @@ public class Ride {
 		Location loc1 = departure.getLocation();
 		Location loc2 = arrival.getLocation();
 		return loc1.Distance(loc2);
+	}
+	
+	public void PlanRide() {
+		this.policy.PlanRide(this.user, this.destination, this.park, this.bicycleType, this);
 	}
 	
 	

@@ -1,11 +1,11 @@
 package classes_part1;
 
-public class AvoidPlusStations implements Policy {
+public class NormalPolicy implements Policy {
 	
-	public AvoidPlusStations() {
-	}
-	
-	
+	/**
+	 * Plans out a ride for the user, giving them the closest stations to their current location and destination
+	 */
+	@Override
 	public void PlanRide(User user, Location destination, VelibPark park, BicycleType type, Ride ride) {
 		Station start = park.stationsList.get(0);
 		double startDistance = start.location.Distance(user.location);
@@ -16,18 +16,18 @@ public class AvoidPlusStations implements Policy {
 				start = station;
 				startDistance = start.location.Distance(user.location);
 			}
-			if ((station.location.Distance(destination) < endDistance) && (station.FreeSlots() > 0) && (station.type != StationType.plus)) {
+			if ((station.location.Distance(destination) < endDistance) && (station.FreeSlots() > 0)) {
 				end = station;
 				endDistance = end.location.Distance(destination);
 			}
 		}
-		if (end != start) {
+		if (start != end) {
 			ride.suggestedDeparture = start;
 			ride.suggestedArrival = end;
 		}
 		System.out.println("The quickest path is by foot");
 		ride.suggestedDeparture = null;
 		ride.suggestedArrival = null;
-		}
+	}
 
 }
