@@ -30,7 +30,7 @@ public class StationTest {
 			slot.addBicycle(bicycle);
 		}
 		int num = 7;
-		int bikeNum = station.BicycleNumber();
+		int bikeNum = station.BicycleCount();
 		assertTrue(num == bikeNum);
 	}
 
@@ -43,7 +43,7 @@ public class StationTest {
 			slot.addBicycle(bike_meca);
 		}
 		int num = 7;
-		int bikeNum = station.BicycleNumber(BicycleType.Mechanical);
+		int bikeNum = station.BicycleCount(BicycleType.Mechanical);
 		assertTrue(num == bikeNum);
 	}
 
