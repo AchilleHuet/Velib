@@ -11,6 +11,7 @@ public class User {
 	Double time; //amount of time user has been on a bike
 	Double creditEarned; //total amount of time credit a user has earned
 	Location location;
+	Ride currentRide;
 	
 	/**
 	 * Creates a new user with specific card type

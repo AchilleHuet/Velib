@@ -134,7 +134,7 @@ public class Ride {
 	}
 	
 	public void PlanRide() {
-		this.policy.PlanRide(this.user, this.destination, this.park, this.bicycleType, this);
+		this.policy.PlanRide(this.user, this.destination, this.park, this.bicycleType);
 	}
 	
 	

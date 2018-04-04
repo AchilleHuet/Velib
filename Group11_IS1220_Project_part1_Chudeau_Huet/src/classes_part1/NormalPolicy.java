@@ -6,7 +6,8 @@ public class NormalPolicy implements Policy {
 	 * Plans out a ride for the user, giving them the closest stations to their current location and destination
 	 */
 	@Override
-	public void PlanRide(User user, Location destination, VelibPark park, BicycleType type, Ride ride) {
+	public void PlanRide(User user, Location destination, VelibPark park, BicycleType type) {
+		Ride ride = user.currentRide;
 		Station start = park.stationsList.get(0);
 		double startDistance = start.location.Distance(user.location);
 		Station end = park.stationsList.get(0);

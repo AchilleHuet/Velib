@@ -3,7 +3,8 @@ package classes_part1;
 public class PreserveUniformity implements Policy {
 	
 	@Override
-	public void PlanRide(User user, Location destination, VelibPark park, BicycleType type, Ride ride) {
+	public void PlanRide(User user, Location destination, VelibPark park, BicycleType type) {
+		Ride ride = user.currentRide;
 		Station start = park.stationsList.get(0);
 		double startDistance = start.location.Distance(user.location);
 		Station end = park.stationsList.get(0);
