@@ -95,6 +95,11 @@ public class Station {
 	}
 	
 		
+	public ArrayList<User> getObservers() {
+		return observers;
+	}
+
+
 	public double getOccupationRate() {
 		return occupationRate;
 	}

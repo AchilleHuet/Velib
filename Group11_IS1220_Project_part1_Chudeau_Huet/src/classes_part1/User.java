@@ -132,11 +132,11 @@ public class User {
 		this.timeCredit = timeCredit;
 	}
 	
-	void suscribe(Station station) {
+	public void suscribe(Station station) {
 		station.addObserver(this);
 	}
 	
-	void unsuscribe(Station station) {
+	public void unsuscribe(Station station) {
 		station.removeObserver(this);
 	}	
 	

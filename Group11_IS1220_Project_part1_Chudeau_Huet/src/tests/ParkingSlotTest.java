@@ -2,10 +2,13 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import classes_part1.Bicycle;
 import classes_part1.BicycleType;
+import classes_part1.OperationType;
 import classes_part1.ParkingSlot;
 import classes_part1.SlotStatus;
 
@@ -57,17 +60,39 @@ public class ParkingSlotTest {
 
 	@Test
 	public void testOutOfOrder() {
-		fail("Not yet implemented");
+		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
+		ParkingSlot slot = new ParkingSlot();
+		slot.addBicycle(bicycle);
+		slot.OutOfOrder();
+		System.out.println("il doit y avoir OperationType.breakSlot");
+		System.out.println(slot.getHistory());
+		assertTrue(slot.getStatus() == SlotStatus.Out_of_order);
 	}
 
 	@Test
 	public void testFixSlot() {
-		fail("Not yet implemented");
+		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
+		ParkingSlot slot = new ParkingSlot();
+		slot.addBicycle(bicycle);
+		slot.OutOfOrder();
+		slot.FixSlot();
+		System.out.println("il doit y avoir OperationType.fixSlot");
+		System.out.println(slot.getHistory());
+		assertTrue(slot.getStatus() == SlotStatus.Occupied);
+		
+		System.out.println("doit afficher \"This slot doesn't need to be fixed\"");
+		slot.FixSlot();
 	}
 
 	@Test
 	public void testOccupationRate() {
-		fail("Not yet implemented");
+		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
+		ParkingSlot slot = new ParkingSlot();
+		slot.addBicycle(bicycle);
+		Date date1= new Date();
+		Date date2= new Date();
+		slot.occupationRate(date1,date2);
+		
 	}
 
 }

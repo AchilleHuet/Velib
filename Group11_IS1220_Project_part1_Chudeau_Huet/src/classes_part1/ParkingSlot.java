@@ -134,7 +134,7 @@ public class ParkingSlot {
 	 * @param endTime
 	 * @return
 	 */
-	double occupationRate(Date startTime, Date endTime) {
+	public double occupationRate(Date startTime, Date endTime) {
 		int i = this.history.size();
 		while (this.history.get(i).date.compareTo(endTime)>0) {
 			i--;

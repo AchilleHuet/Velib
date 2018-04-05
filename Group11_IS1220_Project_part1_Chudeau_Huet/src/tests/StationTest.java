@@ -6,11 +6,15 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import classes_part1.AvoidPlusStations;
 import classes_part1.Bicycle;
 import classes_part1.BicycleType;
 import classes_part1.Location;
 import classes_part1.ParkingSlot;
+import classes_part1.Policy;
+import classes_part1.Ride;
 import classes_part1.Station;
+import classes_part1.User;
 
 public class StationTest {
 
@@ -57,6 +61,30 @@ public class StationTest {
 		double rate = station.getOccupationRate();
 		System.out.println(rate);
 		assertTrue(rate == 0.);
+	}
+	
+	@Test
+	public void testStartRide() {
+		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
+		User Damien = new User("Damien");
+		Location loc = new Location(23.1,46.2);
+		Station station = new Station(7,loc);
+		station.startRide(bicycle, Damien);
+		//tester maintenant le ride de Damien
+	}
+	
+	@Test
+	public void testEndRide() {
+		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
+		Location loc1 = new Location(23.456,78.902);
+		Station desiredDeparture = new Station(12, loc1);
+		Location loc2 = new Location(46.872, 94.097);
+		Station desiredArrival = new Station(4, loc2);
+		Policy policy = new AvoidPlusStations();
+		Ride ride = new Ride(bicycle, desiredDeparture, desiredArrival, policy);
+		Location loc = new Location(23.1,46.2);
+		Station station = new Station(7,loc);
+		station.endRide(ride);
 	}
 
 }

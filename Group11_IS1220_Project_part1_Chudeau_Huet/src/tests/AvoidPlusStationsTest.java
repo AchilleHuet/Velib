@@ -9,16 +9,15 @@ import classes_part1.Location;
 import classes_part1.User;
 import classes_part1.VelibPark;
 
-public class PreferPlusStationsTest {
+public class AvoidPlusStationsTest {
 
 	@Test
-	public void testPreferPlusStations() {
+	public void testAvoidPlusStations() {
 		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testPlanRide() {
-		
 		//cas du vélo mécanique
 		User Damien = new User("Damien");
 		Location loc = new Location(23.1,46.2);
