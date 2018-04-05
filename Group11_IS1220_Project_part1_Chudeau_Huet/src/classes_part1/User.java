@@ -5,11 +5,11 @@ public class User {
 	Card card;
 	String name;
 	Integer ID = 1;
-	Double timeCredit; 
+	Double timeCredit; //user's time credit in seconds
 	public static Integer counter = 1;
 	Integer rides; //number of rides the user has done
 	Double time; //amount of time user has been on a bike
-	Double creditEarned; //total amount of time credit a user has earned
+	Double creditEarned; //total amount of time credit a user has earned in seconds
 	Location location;
 	Ride currentRide;
 	
@@ -43,7 +43,7 @@ public class User {
 		super();
 		this.name = name;
 		this.timeCredit = 0.;
-		this.card = Card.NoCard;
+		this.card = new NoCard();
 		this.rides = 0;
 		this.creditEarned = 0.;
 		this.ID = counter;
@@ -61,7 +61,7 @@ public class User {
 		super();
 		this.name = name;
 		this.timeCredit = 0.;
-		this.card = Card.NoCard;
+		this.card = new NoCard();
 		this.rides = 0;
 		this.creditEarned = 0.;
 		this.ID = counter;

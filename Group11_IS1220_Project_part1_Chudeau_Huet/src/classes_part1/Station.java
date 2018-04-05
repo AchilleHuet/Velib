@@ -187,5 +187,37 @@ public class Station {
 		}
 	}
 	
+	/**
+	 * Starts an actual ride - user takes a bike from the station
+	 * @param bicycle
+	 * @param user
+	 */
+	public void startRide(Bicycle bicycle, User user) {
+		Ride ride = user.currentRide;
+		ride.departure = this;
+		ride.startTime = new Date();
+	}
+	
+	
+	/**
+	 * ends a ride
+	 * @param ride 
+	 * @param arrival The station at which the user arrives
+	 */
+	public void endRide(Ride ride) {
+		if (this.FreeSlots()>0) {
+			
+			int i = 0;
+			while (this.parkingSlots.get(i).status != SlotStatus.Free) {
+				i++;
+			}
+			this.parkingSlots.get(i).endRide(ride.bicycle);
+			ride.endTime = new Date();
+			ride.arrival = this;
+			ride.cost = ride.user.card.computeCost(ride);
+		}
+		
+	}
+	
 	
 }

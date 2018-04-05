@@ -42,8 +42,11 @@ public class ParkingSlot {
 	public ArrayList<Operation> getHistory() {
 		return history;
 	}
-	public void setHistory(ArrayList<Operation> history) {
-		this.history = history;
+	public void addOperations(ArrayList<Operation> operations) {
+		this.history.addAll(operations);
+	}
+	public void addOperation(Operation operation) {
+		this.history.add(operation);
 	}
 
 	/**
@@ -70,6 +73,25 @@ public class ParkingSlot {
 		if (this.status == SlotStatus.Free) {
 			this.status = SlotStatus.Occupied;
 			this.bicycle = bicycle;
+		}
+		else if (this.status == SlotStatus.Occupied) {
+			System.out.println("This parking slot is already occupied");
+		}
+		else { 
+			//parkingSlot is out of order
+			System.out.println("This parking slot is out of order");
+		}
+	}
+	
+	/**
+	 * add a bicycle to a free parking slot
+	 * @param bicycle
+	 */
+	public void endRide(Bicycle bicycle) {
+		if (this.status == SlotStatus.Free) {
+			this.status = SlotStatus.Occupied;
+			this.bicycle = bicycle;
+			this.addOperation(new Operation(OperationType.endRide, bicycle));
 		}
 		else if (this.status == SlotStatus.Occupied) {
 			System.out.println("This parking slot is already occupied");

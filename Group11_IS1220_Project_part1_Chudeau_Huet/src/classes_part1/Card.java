@@ -1,7 +1,7 @@
 package classes_part1;
 
-public enum Card {
+public interface Card {
 
-	Vlibre, Vmax, NoCard;
+	double computeCost(Ride ride);
 	
 }
