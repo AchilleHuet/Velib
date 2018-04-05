@@ -132,9 +132,18 @@ public class User {
 		this.timeCredit = timeCredit;
 	}
 	
+	void suscribe(Station station) {
+		station.addObserver(this);
+	}
 	
+	void unsuscribe(Station station) {
+		station.removeObserver(this);
+	}	
 	
-	
-	
+	public void planRide(VelibPark park, Policy policy, BicycleType type, Location destination) {
+		Ride ride = new Ride(this, park, policy, type, destination);
+		ride.planRide();
+		this.suscribe(ride.suggestedArrival);
+	}
 
 }

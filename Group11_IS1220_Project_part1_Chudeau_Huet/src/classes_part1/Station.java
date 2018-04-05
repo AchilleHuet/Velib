@@ -1,7 +1,6 @@
 package classes_part1;
 
 import java.util.ArrayList;
-
 import java.util.Date;
 
 public class Station {
@@ -14,6 +13,7 @@ public class Station {
 	Terminal terminal;
 	public long uses;
 	double occupationRate;
+	ArrayList<User> observers;
 	
 	/**
 	 * creates a new station with empty parking slots with a specific size and location
@@ -63,6 +63,9 @@ public class Station {
 
 	public void setStatus(StationStatus status) {
 		this.status = status;
+		if (status == StationStatus.Offline) {
+			this.notifyObservers();
+		}
 	}
 
 	public StationType getType() {
@@ -155,5 +158,34 @@ public class Station {
 		this.occupationRate /= this.parkingSize;
 		
 	}
+	
+	void addObserver(User user) {
+		this.observers.add(user);
+	}
+	
+	void removeObserver(User user) {
+		for (int i = 0; i< this.observers.size(); i++) {
+			if (this.observers.get(i) == user) {
+				this.observers.remove(i);
+				i--;
+			}
+		}
+	}
+	
+	public void notifyObserver(User user) {
+		if (this.status == StationStatus.InService) {
+			System.out.println("Station is online");
+		}
+		else {
+			System.out.println("Station is offline");
+		}
+	}
+	
+	public void notifyObservers() {
+		for (User user : this.observers) {
+			notifyObserver(user);
+		}
+	}
+	
 	
 }

@@ -25,7 +25,7 @@ public class Ride {
 	 * @param type
 	 * @param park
 	 */
-	public Ride(User user, Location destination, BicycleType type, VelibPark park, Policy policy) {
+	public Ride(User user, VelibPark park, Policy policy, BicycleType type, Location destination) {
 		super();
 		this.user = user;
 		this.destination = destination;
@@ -133,7 +133,7 @@ public class Ride {
 		return loc1.Distance(loc2);
 	}
 	
-	public void PlanRide() {
+	public void planRide() {
 		this.policy.PlanRide(this.user, this.destination, this.park, this.bicycleType);
 	}
 	
