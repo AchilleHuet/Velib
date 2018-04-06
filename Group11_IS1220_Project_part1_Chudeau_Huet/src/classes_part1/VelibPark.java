@@ -12,6 +12,11 @@ public class VelibPark {
 	double ymin;
 	double ymax;
 	
+	public VelibPark() {
+		this(-1000., 1000., 1000., 1000.);
+		this.stationsList = new ArrayList<Station>();
+	}
+	
 	/**
 	 * Creates a new empty Velib park 
 	 * @param xmin
@@ -33,13 +38,7 @@ public class VelibPark {
 	 * @param size : Number of stations
 	 */
 	public void fillPark(int size) {
-		int stationSize = 100;
-		for (int i = 0; i<size; i++) {
-			double randomX = Math.random()*(this.xmax-this.xmin) + this.xmin;
-			double randomY = Math.random()*(this.ymax-this.ymin) + this.ymin;
-			Location location = new Location(randomX, randomY);
-			this.stationsList.add(new Station(stationSize, location));
-		}
+		this.fillPark(size, 100);
 	}
 	
 	/**
@@ -52,8 +51,15 @@ public class VelibPark {
 			double randomX = Math.random()*(this.xmax-this.xmin) + this.xmin;
 			double randomY = Math.random()*(this.ymax-this.ymin) + this.ymin;
 			Location location = new Location(randomX, randomY);
-			this.stationsList.add(new Station(stationSize, location));
+			Station station = new Station(stationSize, location);
+			station.park = this;
+			this.stationsList.add(station);
 		}
+	}
+	
+	public void addStation(Station station) {
+		station.park = this;
+		stationsList.add(station);
 	}
 
 	
@@ -62,8 +68,8 @@ public class VelibPark {
 	}
 
 
-	public void setStationsList(ArrayList<Station> stationsList) {
-		this.stationsList = stationsList;
+	public void addStations(ArrayList<Station> stationsList) {
+		this.stationsList.addAll(stationsList);
 	}
 	
 	/**
@@ -108,6 +114,10 @@ public class VelibPark {
 			}
 		}
 		return minStation;
+	}
+	
+	public String toString() {
+		return "Park: " + stationsList;
 	}
 	
 }

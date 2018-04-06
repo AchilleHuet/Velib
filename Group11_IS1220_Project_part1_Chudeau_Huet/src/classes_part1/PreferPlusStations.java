@@ -6,6 +6,9 @@ public class PreferPlusStations implements Policy {
 	}
 	
 	public void PlanRide(User user, Location destination, VelibPark park, BicycleType type) {
+		if (user.currentRide == null) {
+			user.currentRide = new Ride(user, park, this, type, destination);
+		}
 		Ride ride = user.currentRide;
 		Station start = park.stationsList.get(0);
 		double startDistance = start.location.Distance(user.location);
@@ -29,6 +32,7 @@ public class PreferPlusStations implements Policy {
 					end = station;
 				}
 			}
+			
 			ride.suggestedDeparture = start;
 			ride.suggestedArrival = end;
 		}

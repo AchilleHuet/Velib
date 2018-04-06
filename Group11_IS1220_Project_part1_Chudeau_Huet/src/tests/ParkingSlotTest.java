@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import classes_part1.Bicycle;
 import classes_part1.BicycleType;
+import classes_part1.Operation;
 import classes_part1.OperationType;
 import classes_part1.ParkingSlot;
 import classes_part1.SlotStatus;
@@ -27,6 +28,15 @@ public class ParkingSlotTest {
 		ParkingSlot slot = new ParkingSlot(bicycle);
 		System.out.println("ce slot doit être occupé");
 		assertTrue(slot.getStatus() == SlotStatus.Occupied);
+	}
+	
+	@Test
+	public void testParkingSlotHistory() {
+		ParkingSlot slot = new ParkingSlot();
+		System.out.println(slot.getHistory());
+		Operation operation = new Operation(OperationType.breakSlot);
+		slot.addOperation(operation);
+		System.out.println(slot.getHistory());
 	}
 	
 	@Test
@@ -90,7 +100,9 @@ public class ParkingSlotTest {
 		ParkingSlot slot = new ParkingSlot();
 		slot.addBicycle(bicycle);
 		Date date1= new Date();
+		long time = date1.getTime();
 		Date date2= new Date();
+		date1.setTime(time - 20000);
 		slot.occupationRate(date1,date2);
 		
 	}

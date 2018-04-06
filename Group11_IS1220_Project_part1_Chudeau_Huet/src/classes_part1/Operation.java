@@ -13,10 +13,14 @@ public class Operation {
 		this.type = type;
 	}
 	
-	public Operation(OperationType type, Bicycle bicycle) {
+	public Operation(OperationType type, Bicycle bicycle, Date date) {
 		this.bicycle = bicycle;
-		this.date = new Date();
+		this.date = date;
 		this.type = type;
+	}
+	
+	public Operation(OperationType type, Bicycle bicycle) {
+		this(type, bicycle, new Date());
 	}
 
 	public Date getDate() {
@@ -43,6 +47,11 @@ public class Operation {
 		this.type = type;
 	}
 	
-	
+	public String toString() {
+		if (this.bicycle != null) {
+			return this.type + " " + this.date + " " + this.bicycle.type;
+		}
+		return this.type + " " + this.date;
+	}
 
 }

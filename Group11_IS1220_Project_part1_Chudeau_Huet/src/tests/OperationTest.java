@@ -13,13 +13,13 @@ public class OperationTest {
 
 	@Test
 	public void testOperationOperationType() {
-		Operation op = new Operation(OperationType.startRide);
+		Operation op = new Operation(OperationType.removeBike);
 		System.out.println(op.getType());
-		assertTrue(op.getType() == OperationType.startRide);
+		assertTrue(op.getType() == OperationType.removeBike);
 		
-		Operation op2 = new Operation(OperationType.endRide);
+		Operation op2 = new Operation(OperationType.addBike);
 		System.out.println(op2.getType());
-		assertTrue(op2.getType() == OperationType.endRide);
+		assertTrue(op2.getType() == OperationType.addBike);
 		
 		Operation op3 = new Operation(OperationType.fixSlot);
 		System.out.println(op3.getType());
@@ -34,13 +34,13 @@ public class OperationTest {
 	public void testOperationOperationTypeBicycle() {
 		Bicycle bike_meca = new Bicycle(BicycleType.Mechanical);
 		
-		Operation op = new Operation(OperationType.startRide,bike_meca);
+		Operation op = new Operation(OperationType.removeBike,bike_meca);
 		System.out.println(op.getType());
-		assertTrue(op.getType() == OperationType.startRide);
+		assertTrue(op.getType() == OperationType.removeBike);
 		
-		Operation op2 = new Operation(OperationType.endRide,bike_meca);
+		Operation op2 = new Operation(OperationType.addBike,bike_meca);
 		System.out.println(op2.getType());
-		assertTrue(op2.getType() == OperationType.endRide);
+		assertTrue(op2.getType() == OperationType.addBike);
 		
 		Operation op3 = new Operation(OperationType.fixSlot,bike_meca);
 		System.out.println(op3.getType());
@@ -49,6 +49,13 @@ public class OperationTest {
 		Operation op4 = new Operation(OperationType.breakSlot,bike_meca);
 		System.out.println(op4.getType());
 		assertTrue(op4.getType() == OperationType.breakSlot);
+	}
+	
+	@Test
+	public void testOperationToString() {
+		Bicycle bike_meca = new Bicycle(BicycleType.Mechanical);
+		Operation op = new Operation(OperationType.removeBike, bike_meca);
+		System.out.println(op);
 	}
 
 }

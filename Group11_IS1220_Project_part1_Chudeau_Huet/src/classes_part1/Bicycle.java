@@ -16,10 +16,6 @@ public class Bicycle {
 		return ID;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
-	}
-
 	public BicycleType getType() {
 		return type;
 	}

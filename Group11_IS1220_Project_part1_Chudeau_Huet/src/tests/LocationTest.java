@@ -11,7 +11,7 @@ public class LocationTest {
 	@Test
 	public void testLocation() {
 		Location loc = new Location(23.1,46.2);
-		System.out.println("loc (23.1,46.2)" + loc.getX() + loc.getY());
+		System.out.println("loc (23.1,46.2)" + loc.getX() + " " + loc.getY());
 		assertTrue(23.1 == loc.getX() && 46.2 == loc.getY());
 		
 	}

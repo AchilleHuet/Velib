@@ -30,6 +30,13 @@ public class Ride {
 		this.user = user;
 		this.destination = destination;
 		this.bicycleType = type;
+		this.policy = policy;
+	}
+	
+	public Ride(User user, VelibPark park, Bicycle bicycle) {
+		super();
+		this.user = user;
+		this.bicycle = bicycle;
 	}
 	
 	/**
@@ -136,6 +143,5 @@ public class Ride {
 	public void planRide() {
 		this.policy.PlanRide(this.user, this.destination, this.park, this.bicycleType);
 	}
-	
 	
 }

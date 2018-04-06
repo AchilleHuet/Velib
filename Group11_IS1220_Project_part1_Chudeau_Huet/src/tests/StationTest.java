@@ -20,15 +20,15 @@ public class StationTest {
 
 	@Test
 	public void testStation() {
-		Location loc = new Location(23.1,46.2);
-		Station station = new Station(7,loc);
+		Location loc = new Location(23.1, 46.2);
+		Station station = new Station(7, loc);
 		System.out.println(station.getParkingSlots());
 	}
 
 	@Test
 	public void testBicycleNumber() {
-		Location loc = new Location(23.1,46.2);
-		Station station = new Station(7,loc);
+		Location loc = new Location(23.1, 46.2);
+		Station station = new Station(7, loc);
 		for (ParkingSlot slot : station.getParkingSlots()) {
 			Bicycle bicycle = null;
 			slot.addBicycle(bicycle);
@@ -67,8 +67,8 @@ public class StationTest {
 	public void testStartRide() {
 		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
 		User Damien = new User("Damien");
-		Location loc = new Location(23.1,46.2);
-		Station station = new Station(7,loc);
+		Location loc = new Location(23.1, 46.2);
+		Station station = new Station(7, loc);
 		station.startRide(bicycle, Damien);
 		//tester maintenant le ride de Damien
 	}

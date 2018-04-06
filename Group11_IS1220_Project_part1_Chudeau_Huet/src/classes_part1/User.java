@@ -66,6 +66,7 @@ public class User {
 		this.creditEarned = 0.;
 		this.ID = counter;
 		counter++;
+		this.location = new Location(0., 0.);
 	}
 
 	public Card getCard() {

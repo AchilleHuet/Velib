@@ -6,7 +6,7 @@ import java.util.Date;
 public class Station {
 	
 	ArrayList<ParkingSlot> parkingSlots;
-	Integer parkingSize = parkingSlots.size();
+	Integer parkingSize;
 	Location location;
 	StationStatus status;
 	StationType type;
@@ -14,6 +14,9 @@ public class Station {
 	public long uses;
 	double occupationRate;
 	ArrayList<User> observers;
+	VelibPark park;
+	int ID;
+	public static int counter = 1;
 	
 	/**
 	 * creates a new station with empty parking slots with a specific size and location
@@ -22,84 +25,75 @@ public class Station {
 	 */
 	public Station(Integer parkingSize, Location location) {
 		super();
+		this.ID = counter;
+		counter++;
 		this.parkingSlots = new ArrayList<ParkingSlot>();
-		for (int i=0; i<parkingSize; i++) {
+		for (int i = 0; i < parkingSize; i++) {
 			this.parkingSlots.add(new ParkingSlot());
 		}
+		this.parkingSize = parkingSize;
+		this.status = StationStatus.InService;
+		this.type = StationType.standard;
 		this.location = location;
 		this.uses = 0;
+		this.occupationRate = 0.;
+		this.observers = new ArrayList<User>();
 	}
 		
 	
 	public ArrayList<ParkingSlot> getParkingSlots() {
 		return parkingSlots;
 	}
-
-	public void setParkingSlots(ArrayList<ParkingSlot> parkingSlots) {
-		this.parkingSlots = parkingSlots;
+	public void addParkingSlots(ArrayList<ParkingSlot> parkingSlots) {
+		this.parkingSlots.addAll(parkingSlots);
+		this.parkingSize += parkingSlots.size();
 	}
-
+	public void addParkingSlot(ParkingSlot slot) {
+		this.parkingSlots.add(slot);
+		this.parkingSize += 1;
+	}
 	public Integer getParkingSize() {
 		return parkingSize;
 	}
-
 	public void setParkingSize(Integer parkingSize) {
 		this.parkingSize = parkingSize;
 	}
-
 	public Location getLocation() {
 		return location;
 	}
-
-
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-
-
 	public StationStatus getStatus() {
 		return status;
 	}
-
 	public void setStatus(StationStatus status) {
 		this.status = status;
 		if (status == StationStatus.Offline) {
 			this.notifyObservers();
 		}
 	}
-
 	public StationType getType() {
 		return type;
 	}
-
 	public void setType(StationType type) {
 		this.type = type;
 	}
-
-
 	public Terminal getTerminal() {
 		return terminal;
 	}
-
 	public void setTerminal(Terminal terminal) {
 		this.terminal = terminal;
 	}
-
 	public long getUses() {
 		return uses;
 	}
-
-
 	public void setUses(long uses) {
 		this.uses = uses;
-	}
-	
-		
+	}	
 	public ArrayList<User> getObservers() {
 		return observers;
 	}
-
-
 	public double getOccupationRate() {
 		return occupationRate;
 	}
@@ -198,6 +192,9 @@ public class Station {
 	 * @param user
 	 */
 	public void startRide(Bicycle bicycle, User user) {
+		if (user.currentRide == null) {
+			user.currentRide = new Ride(user, this.park, bicycle);
+		}
 		Ride ride = user.currentRide;
 		ride.departure = this;
 		ride.startTime = new Date();
@@ -222,6 +219,10 @@ public class Station {
 			ride.cost = ride.user.card.computeCost(ride);
 		}
 		
+	}
+	
+	public String toString() {
+		return "Station " + ID + ": " + parkingSize + " slots, " + status + " " + type;
 	}
 	
 	

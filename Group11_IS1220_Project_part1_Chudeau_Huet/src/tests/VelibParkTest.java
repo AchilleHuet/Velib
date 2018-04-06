@@ -2,8 +2,11 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Test;
 
+import classes_part1.Location;
 import classes_part1.Station;
 import classes_part1.VelibPark;
 
@@ -14,6 +17,7 @@ public class VelibParkTest {
 		VelibPark park = new VelibPark(0,30,0,120);
 		park.fillPark(20);
 		System.out.println(park.getStationsList());
+		System.out.println(park);
 	}
 	
 	@Test
@@ -22,16 +26,25 @@ public class VelibParkTest {
 		park.fillPark(20,12);
 		System.out.println(park.getStationsList());
 	}
+	
+	@Test
+	public void testAddStation() {
+		Location loc = new Location(23.1, 46.2);
+		Station station = new Station(7, loc);
+		VelibPark park = new VelibPark(0,30,0,120);
+		park.addStation(station);
+	}
 
 
 	@Test
 	public void testMostUsedStation() {
 		VelibPark park = new VelibPark(0,30,0,120);
-		park.fillPark(20);
+		park.fillPark(20,10);
 		Station station = park.getStationsList().get(4);
-		//station.calculateOccupationRate(startTime, endTime);
+		station.setUses(2);
 		Station stationmax = park.mostUsedStation();
 		assertTrue(station == stationmax);
+		
 	}
 
 	@Test
