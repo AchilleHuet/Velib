@@ -8,6 +8,8 @@ public class ParkingSlot {
 	SlotStatus status;
 	Bicycle bicycle;
 	ArrayList<Operation> history;
+	Station station;
+	int ID;
 	
 	/**
 	 * create an empty parking slot

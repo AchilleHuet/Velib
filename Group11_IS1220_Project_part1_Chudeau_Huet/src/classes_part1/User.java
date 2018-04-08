@@ -12,6 +12,7 @@ public class User {
 	Double creditEarned; //total amount of time credit a user has earned in seconds
 	Location location;
 	Ride currentRide;
+	VelibPark park;
 	
 	/**
 	 * Creates a new user with specific card type
@@ -19,7 +20,7 @@ public class User {
 	 * @param card
 	 * @param location
 	 */
-	public User(String name, Card card, Location location) {
+	public User(String name, Card card, VelibPark park) {
 		//Creates a new user with specific card type
 		super();
 		this.card = card;
@@ -29,7 +30,8 @@ public class User {
 		this.creditEarned = 0.;
 		this.ID = counter;
 		counter++;
-		this.location = location;
+		this.park = park;
+		park.usersList.add(this);
 	}
 	
 	/**
@@ -38,17 +40,9 @@ public class User {
 	 * @param location
 	 */
 
-	public User(String name, Location location) {
+	public User(String name, VelibPark park) {
 		//Creates a new user without a card
-		super();
-		this.name = name;
-		this.timeCredit = 0.;
-		this.card = new NoCard();
-		this.rides = 0;
-		this.creditEarned = 0.;
-		this.ID = counter;
-		counter++;
-		this.location = location;
+		this(name, new NoCard(), park);
 	}
 	
 	/**

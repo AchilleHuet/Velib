@@ -15,6 +15,7 @@ import classes_part1.Policy;
 import classes_part1.Ride;
 import classes_part1.Station;
 import classes_part1.User;
+import classes_part1.VelibPark;
 
 public class StationTest {
 
@@ -76,15 +77,23 @@ public class StationTest {
 	@Test
 	public void testEndRide() {
 		Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
-		Location loc1 = new Location(23.456,78.902);
-		Station desiredDeparture = new Station(12, loc1);
-		Location loc2 = new Location(46.872, 94.097);
-		Station desiredArrival = new Station(4, loc2);
-		Policy policy = new AvoidPlusStations();
-		Ride ride = new Ride(bicycle, desiredDeparture, desiredArrival, policy);
-		Location loc = new Location(23.1,46.2);
-		Station station = new Station(7,loc);
-		station.endRide(ride);
+		VelibPark park = new VelibPark("park");
+		User Damien = new User("Damien");
+		Location loc = new Location(23.1, 46.2);
+		Station station = new Station(7, loc);
+		Ride ride = new Ride(Damien, park, bicycle);
+		station.startRide(bicycle, Damien);
+		Location loc2 = new Location(400, -300);
+		Station station2 = new Station(7, loc2);
+		station2.endRide(ride);
+	}
+	
+	@Test
+	public void testFillStation() {
+		Location loc = new Location(23.1, 46.2);
+		Station station = new Station(8, loc);
+		station.fillStation(0.5, 0.5);
+		System.out.println(station.getParkingSlots());
 	}
 
 }

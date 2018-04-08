@@ -8,15 +8,16 @@ public class Station {
 	ArrayList<ParkingSlot> parkingSlots;
 	Integer parkingSize;
 	Location location;
-	StationStatus status;
+	public StationStatus status;
 	StationType type;
 	Terminal terminal;
-	public long uses;
+	public long rents;
+	public long returns;
 	double occupationRate;
 	ArrayList<User> observers;
 	VelibPark park;
 	int ID;
-	public static int counter = 1;
+	public static int slotCounter = 1;
 	
 	/**
 	 * creates a new station with empty parking slots with a specific size and location
@@ -25,32 +26,77 @@ public class Station {
 	 */
 	public Station(Integer parkingSize, Location location) {
 		super();
-		this.ID = counter;
-		counter++;
 		this.parkingSlots = new ArrayList<ParkingSlot>();
 		for (int i = 0; i < parkingSize; i++) {
-			this.parkingSlots.add(new ParkingSlot());
+			addParkingSlot(new ParkingSlot());
 		}
 		this.parkingSize = parkingSize;
 		this.status = StationStatus.InService;
 		this.type = StationType.standard;
 		this.location = location;
-		this.uses = 0;
+		this.rents = 0;
+		this.returns = 0;
 		this.occupationRate = 0.;
 		this.observers = new ArrayList<User>();
 	}
-		
+	
+	/**
+	 * adds a new parking slot and gives it a unique ID (for this station)
+	 * @param slot
+	 */
+	public void addParkingSlot(ParkingSlot slot) {
+		slot.ID = slotCounter;
+		slot.station = this;
+		parkingSlots.add(slot);
+		slotCounter++;
+	}
+	
+	/**
+	 * Fills the station with bikes according to parameters
+	 * @param fullSlots proportion of filled slots
+	 * @param mechSlots proportion of bikes which are mechanical
+	 */
+	public void fillStation(double fullSlots, double mechSlots) {
+		assert(fullSlots <1 && mechSlots<1);
+		int n = (int) (fullSlots * this.parkingSize);
+		int m = (int) (mechSlots*n);
+		for (int i= 0; i<m; i++) {
+			Bicycle bicycle = new Bicycle(BicycleType.Mechanical);
+			parkingSlots.get(i).addBicycle(bicycle);
+		}
+		for (int i= m; i<n; i++) {
+			Bicycle bicycle = new Bicycle(BicycleType.Electrical);
+			parkingSlots.get(i).addBicycle(bicycle);
+		}
+	}
+	
+	public void addBicycle(BicycleType type) {
+		boolean added = false;
+		int i = 0;
+		while (!added && i < this.parkingSize) {
+			if (parkingSlots.get(i).status == SlotStatus.Free) {
+				parkingSlots.get(i).addBicycle(new Bicycle(type));
+				added = true;
+			}
+		}
+	}
+	
+	
+	/**
+	 * Fills the station with default parameter values 
+	 */
+	public void fillStation() {
+		this.fillStation(.70, .70);
+	}
+	
 	
 	public ArrayList<ParkingSlot> getParkingSlots() {
 		return parkingSlots;
 	}
 	public void addParkingSlots(ArrayList<ParkingSlot> parkingSlots) {
-		this.parkingSlots.addAll(parkingSlots);
-		this.parkingSize += parkingSlots.size();
-	}
-	public void addParkingSlot(ParkingSlot slot) {
-		this.parkingSlots.add(slot);
-		this.parkingSize += 1;
+		for (ParkingSlot slot: parkingSlots) {
+			addParkingSlot(slot);
+		}
 	}
 	public Integer getParkingSize() {
 		return parkingSize;
@@ -85,19 +131,30 @@ public class Station {
 	public void setTerminal(Terminal terminal) {
 		this.terminal = terminal;
 	}
-	public long getUses() {
-		return uses;
+	public long getRents() {
+		return rents;
 	}
-	public void setUses(long uses) {
-		this.uses = uses;
-	}	
+	public void setRents(long uses) {
+		this.rents = uses;
+	}
+	public long getReturns() {
+		return returns;
+	}
+	public void setReturns(long uses) {
+		this.returns = uses;
+	}
 	public ArrayList<User> getObservers() {
 		return observers;
 	}
 	public double getOccupationRate() {
 		return occupationRate;
 	}
-
+	public int getID() {
+		return ID;
+	}
+	public long Uses() {
+		return rents + returns;
+	}
 
 	/**
 	 * counts the total number of bicycles in the station
@@ -198,6 +255,7 @@ public class Station {
 		Ride ride = user.currentRide;
 		ride.departure = this;
 		ride.startTime = new Date();
+		this.rents += 1;
 	}
 	
 	
@@ -208,7 +266,6 @@ public class Station {
 	 */
 	public void endRide(Ride ride) {
 		if (this.FreeSlots()>0) {
-			
 			int i = 0;
 			while (this.parkingSlots.get(i).status != SlotStatus.Free) {
 				i++;
@@ -217,12 +274,16 @@ public class Station {
 			ride.endTime = new Date();
 			ride.arrival = this;
 			ride.cost = ride.user.card.computeCost(ride);
+			if (this.type == StationType.plus && ride.user.card.type != CardType.NoCard) {
+				ride.user.timeCredit += 300;
+			}
+			this.returns += 1;
 		}
 		
 	}
 	
 	public String toString() {
-		return "Station " + ID + ": " + parkingSize + " slots, " + status + " " + type;
+		return "Station " + getID() + ": " + status + ", " + type + ", " + parkingSlots +"\n";
 	}
 	
 	

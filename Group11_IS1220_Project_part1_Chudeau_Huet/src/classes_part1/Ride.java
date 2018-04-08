@@ -38,21 +38,6 @@ public class Ride {
 		this.user = user;
 		this.bicycle = bicycle;
 	}
-	
-	/**
-	 * initializes a ride according to what the customer asked
-	 * @param bicycle
-	 * @param desiredDeparture
-	 * @param desiredArrival
-	 * @param strategy
-	 */
-	public Ride(Bicycle bicycle, Station desiredDeparture, Station desiredArrival, Policy policy) {
-		super();
-		this.bicycle = bicycle;
-		this.suggestedDeparture = desiredDeparture;
-		this.suggestedArrival = desiredArrival;
-		this.policy = policy;
-	}
 
 	public double duration() {
 		return this.endTime.compareTo(this.startTime)/1000;

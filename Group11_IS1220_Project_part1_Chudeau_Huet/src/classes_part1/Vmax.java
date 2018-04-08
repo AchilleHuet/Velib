@@ -1,6 +1,8 @@
 package classes_part1;
 
-public class Vmax implements Card{
+public class Vmax extends Card{
+	
+	CardType type =  CardType.Vmax;
 	
 	public double computeCost(Ride ride) {
 		User user = ride.user;

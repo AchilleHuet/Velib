@@ -1,9 +1,10 @@
 package classes_part1;
 
-public class NoCard implements Card{
+public class NoCard extends Card{
+	
+	CardType type =  CardType.NoCard;
 	
 	public double computeCost(Ride ride) {
-		User user = ride.user;
 		double elapsedTime = ride.endTime.compareTo(ride.startTime)/1000;
 		int costPerHour = 1;
 		if (ride.bicycle.type == BicycleType.Electrical) {

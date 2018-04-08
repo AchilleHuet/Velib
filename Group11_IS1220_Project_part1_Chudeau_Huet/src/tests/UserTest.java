@@ -17,16 +17,16 @@ public class UserTest {
 
 	@Test
 	public void testUserStringCardLocation() {
-		Location loc = new Location(23.1,46.2);
+		VelibPark park = new VelibPark("parkName");
 		Card card = new NoCard();
-		User damien = new User("Damien",card,loc);
+		User damien = new User("Damien",card, park);
 		
 	}
 
 	@Test
 	public void testUserStringLocation() {
-		Location loc = new Location(23.1,46.2);
-		User damien = new User("Damien",loc);
+		VelibPark park = new VelibPark("parkName");
+		User damien = new User("Damien", park);
 	}
 
 	@Test

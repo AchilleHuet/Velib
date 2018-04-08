@@ -1,7 +1,9 @@
 package classes_part1;
 
-public interface Card {
+public abstract class Card {
 
-	double computeCost(Ride ride);
+	CardType type;
+
+	abstract double computeCost(Ride ride);
 	
 }

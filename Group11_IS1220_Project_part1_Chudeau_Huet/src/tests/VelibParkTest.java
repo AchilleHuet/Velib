@@ -2,8 +2,6 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
-
 import org.junit.Test;
 
 import classes_part1.Location;
@@ -41,7 +39,7 @@ public class VelibParkTest {
 		VelibPark park = new VelibPark(0,30,0,120);
 		park.fillPark(20,10);
 		Station station = park.getStationsList().get(4);
-		station.setUses(2);
+		station.setRents(2);
 		Station stationmax = park.mostUsedStation();
 		assertTrue(station == stationmax);
 		

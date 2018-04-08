@@ -1,6 +1,8 @@
 package classes_part1;
 
-public class Vlibre implements Card {
+public class Vlibre extends Card {
+	
+	CardType type =  CardType.Vlibre;
 	
 	public double computeCost(Ride ride) {
 		User user = ride.user;

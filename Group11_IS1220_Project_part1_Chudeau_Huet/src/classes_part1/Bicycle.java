@@ -6,6 +6,10 @@ public class Bicycle {
 	public BicycleType type;
 	public static int counter = 1;
 	
+	/**
+	 * Creates a bike of the given type
+	 * @param type
+	 */
 	public Bicycle(BicycleType type) {
 		this.type= type;
 		this.ID = counter;

@@ -7,30 +7,40 @@ import java.util.Date;
 public class VelibPark {
 	
 	ArrayList<Station> stationsList;
+	ArrayList<User> usersList;
+	public static int stationCounter = 1;
+	public String name;
 	double xmin;
 	double xmax;
 	double ymin;
 	double ymax;
 	
-	public VelibPark() {
-		this(-1000., 1000., 1000., 1000.);
+	public VelibPark(String name) {
+		this(-2000., 2000., -2000., 2000.);
 		this.stationsList = new ArrayList<Station>();
+		this.name = name;
 	}
 	
 	/**
 	 * Creates a new empty Velib park 
-	 * @param xmin
-	 * @param xmax
-	 * @param ymin
-	 * @param ymax
+	 * @param xmin the minimal x value in meters
+	 * @param xmax the maximal x value in meters
+	 * @param ymin the minimal y value in meters
+	 * @param ymax the maximal y value in meters
 	 */
 	public VelibPark(double xmin, double xmax, double ymin, double ymax) {
 		super();
 		this.stationsList = new ArrayList<Station>();
+		this.usersList = new ArrayList<User>();
 		this.xmin = xmin;
 		this.xmax = xmax;
 		this.ymin = ymin;
 		this.ymax = ymax;
+	}
+	
+	public VelibPark(String name, double xmin, double xmax, double ymin, double ymax) {
+		this(xmin, xmax, ymin, ymax);
+		this.name = name;
 	}
 	
 	/**
@@ -52,14 +62,19 @@ public class VelibPark {
 			double randomY = Math.random()*(this.ymax-this.ymin) + this.ymin;
 			Location location = new Location(randomX, randomY);
 			Station station = new Station(stationSize, location);
-			station.park = this;
-			this.stationsList.add(station);
+			addStation(station);
 		}
 	}
 	
+	/**
+	 * Creates a new station in the network and gives it a unique ID
+	 * @param station
+	 */
 	public void addStation(Station station) {
+		station.ID = stationCounter;
 		station.park = this;
 		stationsList.add(station);
+		stationCounter++;
 	}
 
 	
@@ -80,8 +95,8 @@ public class VelibPark {
 		long maxUses = 0;
 		Station stationMax = stationsList.get(0);
 		for (Station station : this.stationsList) {
-			if (station.uses > maxUses) {
-				maxUses = station.uses;
+			if (station.Uses() > maxUses) {
+				maxUses = station.Uses();
 				stationMax = station;
 			}
 		}
@@ -117,7 +132,7 @@ public class VelibPark {
 	}
 	
 	public String toString() {
-		return "Park: " + stationsList;
+		return "Park: " + name + ", " + stationsList;
 	}
 	
 }
