@@ -141,4 +141,10 @@ public class User {
 		this.suscribe(ride.suggestedArrival);
 	}
 
+	public VelibPark getPark() {
+		return park;
+	}
+	
+	
+
 }
