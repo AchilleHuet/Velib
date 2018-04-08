@@ -3,7 +3,6 @@ package classes_part2;
 import java.util.concurrent.ThreadLocalRandom;
 
 import classes_part1.BicycleType;
-import classes_part1.Card;
 import classes_part1.NoCard;
 import classes_part1.Station;
 import classes_part1.StationStatus;
@@ -54,7 +53,7 @@ public class Interpreter {
 			else if (words[0] == "rentBike"  && words.length == 3) {
 				RentBike(words[1], words[2]);
 			}
-			else if (words[0] == "returnBike"  && words.length == 4) {
+/*			else if (words[0] == "returnBike"  && words.length == 4) {
 				ReturnBike(words[1], words[2], words[3]);
 			}
 			else if (words[0] == "displayStation"  && words.length == 3) {
@@ -71,10 +70,10 @@ public class Interpreter {
 			}	
 */			else {
 			CommandDoesntExist();
+			}
 		}
-		}
+		catch (NullPointerException e) { }
 		finally {
-			System.out.println("");
 		}
 
 	}
@@ -182,7 +181,7 @@ public class Interpreter {
 		
 		VelibPark park = findVelibPark(parkName);
 		int ID = Integer.parseInt(stationID);
-		if (ID > park.getStationsList().size()-1 || ID <= 0) {
+		if (ID > park.getStationsList().size() || ID <= 0) {
 			System.out.println("The station you asked for does not exist");
 		}
 		else {
