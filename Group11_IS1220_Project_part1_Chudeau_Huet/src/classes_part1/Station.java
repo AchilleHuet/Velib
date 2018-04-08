@@ -125,11 +125,6 @@ public class Station {
 	public void setType(StationType type) {
 		this.type = type;
 	}
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> 1d603c6680d925aff6bb28f9986893b91d391def
 	public long getRents() {
 		return rents;
 	}
