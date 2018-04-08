@@ -6,7 +6,7 @@ public class Vmax extends Card{
 	
 	public double computeCost(Ride ride) {
 		User user = ride.user;
-		double elapsedTime = ride.endTime.compareTo(ride.startTime)/1000;
+		double elapsedTime = ride.duration();
 		int costPerHour = 1;
 		if (elapsedTime < 3600) {
 			return 0.;

@@ -141,7 +141,7 @@ public class ParkingSlot {
 		}
 		long timeOccupied = 0;
 		if (this.history.get(i).type == OperationType.addBike) {
-			timeOccupied += endTime.compareTo(this.history.get(i).date);
+			timeOccupied += endTime.getTime() - this.history.get(i).date.getTime();
 			i--;
 		}
 		if (i == -1) {
@@ -153,12 +153,12 @@ public class ParkingSlot {
 				while (this.history.get(j).type != OperationType.removeBike) {
 					j++;
 				}
-				timeOccupied += this.history.get(j).date.compareTo(history.get(i).date);
+				timeOccupied += this.history.get(j).date.getTime() - history.get(i).date.getTime();
 			}
 			i--;
 		}
 		if (this.history.get(i+1).type == OperationType.removeBike) {
-			timeOccupied += this.history.get(i).date.compareTo(startTime);	
+			timeOccupied += this.history.get(i).date.getTime() - startTime.getTime();	
 		}
 		return timeOccupied / (endTime.compareTo(startTime));
 	}

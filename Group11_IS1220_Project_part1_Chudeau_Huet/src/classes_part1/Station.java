@@ -1,6 +1,7 @@
 package classes_part1;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Station {
@@ -10,7 +11,6 @@ public class Station {
 	Location location;
 	public StationStatus status;
 	StationType type;
-	Terminal terminal;
 	public long rents;
 	public long returns;
 	double occupationRate;
@@ -125,12 +125,7 @@ public class Station {
 	public void setType(StationType type) {
 		this.type = type;
 	}
-	public Terminal getTerminal() {
-		return terminal;
-	}
-	public void setTerminal(Terminal terminal) {
-		this.terminal = terminal;
-	}
+
 	public long getRents() {
 		return rents;
 	}
@@ -249,10 +244,10 @@ public class Station {
 	 * @param user
 	 */
 	public void startRide(Bicycle bicycle, User user) {
-		if (user.currentRide == null) {
-			user.currentRide = new Ride(user, this.park, bicycle);
+		if (user.getCurrentRide() == null) {
+			user.setCurrentRide(new Ride(user, this.park, bicycle));
 		}
-		Ride ride = user.currentRide;
+		Ride ride = user.getCurrentRide();
 		ride.departure = this;
 		ride.startTime = new Date();
 		this.rents += 1;
@@ -297,23 +292,34 @@ public class Station {
 	
 	/**
 	 * ends a ride
-	 * @param ride 
-	 * @param arrival The station at which the user arrives
+	 * @param ride Instance of ride. Must have been started with startRide()
+	 * @param time the amount of time elapsed between the start and the end of the ride in seconds
 	 */
-	public void endRide(Ride ride) {
+	public void endRide(Ride ride, long time) {
 		if (this.FreeSlots()>0) {
 			int i = 0;
 			while (this.parkingSlots.get(i).status != SlotStatus.Free) {
 				i++;
 			}
 			this.parkingSlots.get(i).addBicycle(ride.bicycle);
+			long startTime = ride.startTime.getTime();
 			ride.endTime = new Date();
+			ride.endTime.setTime(startTime + time * 1000);
 			ride.arrival = this;
 			ride.cost = ride.user.card.computeCost(ride);
+			ride.user.time += time;
+			ride.user.cost += ride.cost;
+			ride.user.rides += 1;
+			ride.user.time += ride.duration();
 			if (this.type == StationType.plus && ride.user.card.type != CardType.NoCard) {
 				ride.user.timeCredit += 300;
+				ride.user.creditEarned += 300;
 			}
 			this.returns += 1;
+			ride.user.currentRide = null;
+			if (this.FreeSlots() == 0) {
+				notifyObservers();
+			}
 		}
 		else {
 			System.out.println("This station cannot accomodate any more bikes");
@@ -321,9 +327,100 @@ public class Station {
 		
 	}
 	
+	/**
+	 * Ends a ride
+	 * @param ride Must have been started (with startRide() method)
+	 */
+	public void endRide(Ride ride) {
+		if (ride.arrival == null) {
+			if (this.FreeSlots()>0) {
+				int i = 0;
+				while (this.parkingSlots.get(i).status != SlotStatus.Free) {
+					i++;
+				}
+				this.parkingSlots.get(i).addBicycle(ride.bicycle);
+				ride.endTime = new Date();
+				ride.arrival = this;
+				ride.cost = ride.user.card.computeCost(ride);
+				ride.user.time += ride.duration();
+				ride.user.cost += ride.cost;
+				ride.user.rides += 1;
+				ride.user.time += ride.duration();
+				
+				//Add time credit if the user has a card and the station is a plus station
+				if (this.type == StationType.plus && ride.user.card.type != CardType.NoCard) {
+					ride.user.timeCredit += 300;
+					ride.user.creditEarned += 300;
+				}
+				this.returns += 1;
+				ride.user.currentRide = null;
+				if (this.FreeSlots() == 0) {
+					notifyObservers();
+				}
+			}
+			else {
+				System.out.println("This station cannot accomodate any more bikes");
+			}
+		}
+		else {
+			System.out.println("This ride has already been ended");
+		}
+	}
+	
+	/**
+	 * Ends the ride of the given user if it exists
+	 * @param user
+	 */
+	public void endRide(User user) {
+		if (user.getCurrentRide() != null) {
+			endRide(user.getCurrentRide());
+		}
+	}
+	
+	/**
+	 * Ends the ride of the given user (if it exists) after 'time' seconds have elapsed
+	 * @param user
+	 */
+	public void endRide(User user, long time) {
+		if (user.getCurrentRide() != null) {
+			endRide(user.getCurrentRide(), time);
+		}
+	}
+	
+	
 	public String toString() {
 		return "Station " + getID() + ": " + status + ", " + type + ", " + parkingSlots +"\n";
 	}
 	
+	
+	/**
+	 * Displays the total number of rents and returns of the station, as well as the occupation rate during the period between the 
+	 * two given dates.
+	 * @param startTime Instance of Date class
+	 * @param endTime Instance of Date class
+	 */
+	public void displayStats(Date startTime, Date endTime) {
+		calculateOccupationRate(startTime, endTime);
+		System.out.println("Station " + this.ID + ": " + this.rents + " rents, " + this.returns + " returns, "
+				+ this.occupationRate/100 + "% occupation rate");
+	}
+	
+	
+	/**
+	 * Displays the total number of rents and returns of the station, as well as the occupation rate for the past month.
+	 */
+	public void displayStats() {
+		Calendar calendar = Calendar.getInstance();
+		Date nowDate = calendar.getTime();
+		int month = calendar.get(2);
+		if (month == 0) {
+			calendar.set(2,11);
+		}
+		else {
+		calendar.set(2,month-1);
+		}
+		Date thenDate = calendar.getTime();
+		this.displayStats(thenDate, nowDate);
+	}
 	
 }

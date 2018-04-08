@@ -29,8 +29,7 @@ public class RideTest {
 		ride.setEndTime(new Date(2018, 2, 28, 7, 30, 0));
 		double dur = ride.duration();
 		System.out.println(dur);
-		assertTrue(dur == 0);
-		
+		assertTrue(dur == 5400.);	
 	}
 	
 	@Test

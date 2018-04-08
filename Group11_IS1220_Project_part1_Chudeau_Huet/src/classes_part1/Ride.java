@@ -31,16 +31,18 @@ public class Ride {
 		this.destination = destination;
 		this.bicycleType = type;
 		this.policy = policy;
+		user.setCurrentRide(this);
 	}
 	
 	public Ride(User user, VelibPark park, Bicycle bicycle) {
 		super();
 		this.user = user;
 		this.bicycle = bicycle;
+		user.setCurrentRide(this);
 	}
 
 	public double duration() {
-		return this.endTime.compareTo(this.startTime)/1000;
+		return (this.endTime.getTime() - this.startTime.getTime())/1000;
 	}
 
 	public Date getStartTime() {

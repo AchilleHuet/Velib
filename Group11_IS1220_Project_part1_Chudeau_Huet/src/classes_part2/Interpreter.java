@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import classes_part1.BicycleType;
 import classes_part1.NoCard;
+import classes_part1.Ride;
 import classes_part1.Station;
 import classes_part1.StationStatus;
 import classes_part1.User;
@@ -15,8 +16,6 @@ public class Interpreter {
 		
 	public Interpreter() {
 	}
-	
-	Reader reader;
 		
 	public void InterpretCommand(String string) {
 		
@@ -25,51 +24,51 @@ public class Interpreter {
 			String[] words = string.split(" ");
 			
 			if (words[0].equalsIgnoreCase("help")) {
-				Help();
+				help();
 			}
 			else if (words[0].equalsIgnoreCase("exit")) {
 				System.out.println("Exiting the program");
 			}
 			else if (words[0].equalsIgnoreCase("setup")) {
 				if (words.length == 2) {
-					VelibPark(words[1]);
+					velibPark(words[1]);
 				}
 				else if (words.length == 6) {
-					VelibPark(words[1], words[2], words[3], words[4], words[5]);
+					velibPark(words[1], words[2], words[3], words[4], words[5]);
 				}
 				else {
-					CommandDoesntExist();
+					commandDoesntExist();
 				}
 			}
 			else if (words[0].equalsIgnoreCase("offline") && words.length == 3) {
-				SetOffline(words[1], words[2]);
+				setOffline(words[1], words[2]);
 			}
-			else if (words[0] == "online" && words.length == 3) {
-				SetOnline(words[1], words[2]);
+			else if (words[0].equalsIgnoreCase("online") && words.length == 3) {
+				setOnline(words[1], words[2]);
 			}
-			else if (words[0] == "addUser" && words.length == 4) {
-				AddUser(words[1], words[2], words[3]);
+			else if (words[0].equalsIgnoreCase("addUser") && words.length == 4) {
+				addUser(words[1], words[2], words[3]);
 			}
-			else if (words[0] == "rentBike"  && words.length == 3) {
-				RentBike(words[1], words[2]);
+			else if (words[0].equalsIgnoreCase("rentBike")  && words.length == 3) {
+				rentBike(words[1], words[2]);
 			}
-/*			else if (words[0] == "returnBike"  && words.length == 4) {
-				ReturnBike(words[1], words[2], words[3]);
+			else if (words[0].equalsIgnoreCase("returnBike")  && words.length == 4) {
+				returnBike(words[1], words[2], words[3]);
 			}
-			else if (words[0] == "displayStation"  && words.length == 3) {
-				DisplayStation(words[1], words[2]);
+			else if (words[0].equalsIgnoreCase("displayStation")  && words.length == 3) {
+				displayStation(words[1], words[2]);
 			}
-			else if (words[0] == "displayUser"  && words.length == 3) {
-				DisplayUser(words[1], words[2]);
+			else if (words[0].equalsIgnoreCase("displayUser")  && words.length == 2) {
+				displayUser(words[1]);
 			}
-			else if (words[0] == "sortStation"  && words.length == 3) {
-				SortStation(words[1], words[2]);
+			else if (words[0].equalsIgnoreCase("sortStation")  && words.length == 3) {
+				sortStations(words[1], words[2]);
 			}
-			else if (words[0] == "display"  && words.length == 2) {
-				DisplayNetwork(words[1], words[2]);
+			else if (words[0].equalsIgnoreCase("display")  && words.length == 2) {
+				displayPark(words[1]);
 			}	
-*/			else {
-			CommandDoesntExist();
+			else {
+			commandDoesntExist();
 			}
 		}
 		catch (NullPointerException e) { }
@@ -78,11 +77,11 @@ public class Interpreter {
 
 	}
 	
-	public void CommandDoesntExist() {
+	public void commandDoesntExist() {
 		System.out.println("This command doesn't exist. To see all existing commmands, type help");
 	}
 	
-	public void Help() {
+	public void help() {
 		System.out.println("setup <velibnetworkName> \n"
 				+ "setup <name> <nstations> <nslots> <sidearea> <nbikes> \n"
 				+ "addUser <userName, cardType, velibnetworkName> \n"
@@ -91,13 +90,13 @@ public class Interpreter {
 				+ "rentBike <userID, stationID>\n"
 				+ "returnBike <userID, stationID, time> \n"
 				+ "displayStation<velibnetworkName, stationID> \n"
-				+ "displayStation<velibnetworkName, userID>\n"
+				+ "displayUser<userID>\n"
 				+ "sortStation<velibnetworkName, sortpolicy> \n" 
 				+ "display <velibnetworkName>");
 	}
 	
-	public void VelibPark(String name) {
-		this.VelibPark(name, "10", "10", "4000", "75");
+	public void velibPark(String name) {
+		this.velibPark(name, "10", "10", "4000", "75");
 	}
 	
 	
@@ -111,7 +110,7 @@ public class Interpreter {
 	 * @param sidearea
 	 * @param nbikes
 	 */
-	public void VelibPark(String name, String nstations, String nslots, String sidearea, String nbikes) {
+	public void velibPark(String name, String nstations, String nslots, String sidearea, String nbikes) {
 		
 		int stations = Integer.parseInt(nstations);
 		int slots = Integer.parseInt(nslots);
@@ -176,7 +175,7 @@ public class Interpreter {
 		throw new NullPointerException();
 	}
 	
-	public void SetOnline(String parkName, String stationID) {
+	public void setOnline(String parkName, String stationID) {
 		
 		VelibPark park = findVelibPark(parkName);
 		int ID = Integer.parseInt(stationID);
@@ -197,7 +196,7 @@ public class Interpreter {
 		
 	}
 	
-	public void SetOffline(String parkName, String stationID) {
+	public void setOffline(String parkName, String stationID) {
 		
 		VelibPark park = findVelibPark(parkName);
 		int ID = Integer.parseInt(stationID);
@@ -218,7 +217,7 @@ public class Interpreter {
 		
 	}
 	
-	public void AddUser(String name, String cardType, String parkName) {
+	public void addUser(String name, String cardType, String parkName) {
 		VelibPark park = findVelibPark(parkName);
 		if (cardType.equalsIgnoreCase("none")) {
 			User user = new User(name, new NoCard(), park);
@@ -240,14 +239,57 @@ public class Interpreter {
 		}
 	}
 	
-	public void RentBike(String userID, String stationID) { 
+	public void rentBike(String userID, String stationID) { 
 		int uID = Integer.parseInt(userID);
 		int sID = Integer.parseInt(stationID);
 		User user = findUser(uID);
 		VelibPark park = user.getPark();
 		Station station = findStation(park, sID);
 		station.startRide(user);
-		
+		System.out.println("Ride has been started");
+	}
+	
+	public void returnBike(String userID, String stationID, String time) {
+		int uID = Integer.parseInt(userID);
+		int sID = Integer.parseInt(stationID);
+		long duration = Long.parseLong(time);
+		User user = findUser(uID);
+		VelibPark park = user.getPark();
+		Station station = findStation(park, sID);
+		Ride ride = user.getCurrentRide();
+		station.endRide(user, duration);
+		System.out.println("Ending ride. The cost is " + ride.getCost() + " euros.");
+	}
+	
+	public void displayStation(String parkName, String stationID) {
+		VelibPark park = findVelibPark(parkName);
+		int sID = Integer.parseInt(stationID);
+		Station station = findStation(park, sID);
+		station.displayStats();
+	}
+	
+	public void displayUser(String userID) {
+		int uID = Integer.parseInt(userID);
+		User user = findUser(uID);
+		user.displayStats();
+	}
+	
+	public void displayPark(String parkName) {
+		VelibPark park = findVelibPark(parkName);
+		System.out.println(park);
+	}
+	
+	public void sortStations(String parkName, String sortPolicy) {
+		VelibPark park = findVelibPark(parkName);
+		if (sortPolicy.equalsIgnoreCase("mostUsedStation")) {
+			System.out.println(park.sortStationsUses());
+		}
+		else if (sortPolicy.equalsIgnoreCase("leastOccupiedStation")) {
+			System.out.println(park.sortStationsOccupationRate());
+		}
+		else {
+			System.out.println("This sorting policy is invalid. Please use mostUsedStation or leastOccupiedStation");
+		}
 	}
 		
 		

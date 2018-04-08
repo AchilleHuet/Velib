@@ -7,7 +7,7 @@ public class NormalPolicy implements Policy {
 	 */
 	@Override
 	public void PlanRide(User user, Location destination, VelibPark park, BicycleType type) {
-		Ride ride = user.currentRide;
+		Ride ride = user.getCurrentRide();
 		Station start = park.stationsList.get(0);
 		double startDistance = start.location.Distance(user.location);
 		Station end = park.stationsList.get(0);

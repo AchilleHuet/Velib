@@ -6,9 +6,9 @@ public class Vlibre extends Card {
 	
 	public double computeCost(Ride ride) {
 		User user = ride.user;
-		double elapsedTime = ride.endTime.compareTo(ride.startTime)/1000;
+		double elapsedTime = ride.duration();
 		int costPerHour = 1;
-		if (ride.bicycle.type == BicycleType.Electrical) {
+		if (ride.bicycleType == BicycleType.Electrical) {
 			costPerHour = 2;
 		}
 		if (elapsedTime < 3600) {

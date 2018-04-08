@@ -135,4 +135,52 @@ public class VelibPark {
 		return "Park: " + name + ", " + stationsList;
 	}
 	
+	public Station[] sortStationsUses() {
+		Station[] stations = new Station[stationsList.size()];
+		for (int i = 0; i< stations.length; i++) {
+			stations[i] = stationsList.get(i);
+		}
+		for (int i = 0; i< stations.length-1; i++) {
+			for (int j = i; j< stations.length-1; j++) {
+				if (stations[j].Uses() > stations[j+1].Uses()) {
+					Station s = stations[j];
+					stations[j] = stations[j+1];
+					stations[j+1] = s;
+				}
+			}
+		}
+		return stations;
+	}
+	
+	public Station[] sortStationsOccupationRate() {
+		//Getting the dates to calculate the occupation rate for a month
+		Calendar calendar = Calendar.getInstance();
+		Date nowDate = calendar.getTime();
+		int month = calendar.get(2);
+		if (month == 0) {
+			calendar.set(2,11);
+		}
+		else {
+		calendar.set(2,month-1);
+		}
+		Date thenDate = calendar.getTime();
+		
+		//Sorting the stations
+		Station[] stations = new Station[stationsList.size()];
+		for (int i = 0; i< stations.length; i++) {
+			stationsList.get(i).calculateOccupationRate(thenDate, nowDate);
+			stations[i] = stationsList.get(i);
+		}
+		for (int i = 0; i< stations.length-1; i++) {
+			for (int j = i; j< stations.length-1; j++) {
+				if (stations[j].occupationRate > stations[j+1].occupationRate) {
+					Station s = stations[j];
+					stations[j] = stations[j+1];
+					stations[j+1] = s;
+				}
+			}
+		}
+		return stations;
+	}
+	
 }

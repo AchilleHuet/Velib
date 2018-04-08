@@ -8,8 +8,9 @@ public class User {
 	Double timeCredit; //user's time credit in seconds
 	public static Integer counter = 1;
 	Integer rides; //number of rides the user has done
-	Double time; //amount of time user has been on a bike
+	Double time; //amount of time user has been on a bike in seconds
 	Double creditEarned; //total amount of time credit a user has earned in seconds
+	Double cost; //total amount charged to the user
 	Location location;
 	Ride currentRide;
 	VelibPark park;
@@ -145,7 +146,18 @@ public class User {
 	public VelibPark getPark() {
 		return park;
 	}
+
+	public Ride getCurrentRide() {
+		return currentRide;
+	}
+
+	public void setCurrentRide(Ride currentRide) {
+		this.currentRide = currentRide;
+	}
 	
-	
+	public void displayStats() {
+		System.out.println("User " + ID + ": "+ name + ", " + rides + " rides," + time + " seconds spent riding, " 
+							+ cost + " euros spent, " + creditEarned + " timeCreditEarned");
+	}
 
 }
