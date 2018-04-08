@@ -258,6 +258,42 @@ public class Station {
 		this.rents += 1;
 	}
 	
+	public void startRide(BicycleType type, User user) {
+		boolean started = false;
+		int i = 0;
+		if (BicycleCount(type) > 0 ) {
+			while (!started && i<parkingSize) {
+				if ((parkingSlots.get(i).status == SlotStatus.Occupied) && (parkingSlots.get(i).bicycle.type == type)) {
+					Bicycle bicycle = parkingSlots.get(i).removeBicycle();
+					started = true;
+					startRide(bicycle, user);
+				}
+			}
+		}
+		else {
+			System.out.println("There are no more bikes of this type at this station");
+		}
+		
+	}
+	
+	public void startRide(User user) {
+		boolean started = false;
+		int i = 0;
+		if (BicycleCount() > 0 ) {
+			while (!started && i<parkingSize) {
+				if (parkingSlots.get(i).status == SlotStatus.Occupied) {
+					Bicycle bicycle = parkingSlots.get(i).removeBicycle();
+					started = true;
+					startRide(bicycle, user);
+				}
+			}
+		}
+		else {
+			System.out.println("There are no more bikes at this station");
+		}
+		
+	}
+	
 	
 	/**
 	 * ends a ride
@@ -270,7 +306,7 @@ public class Station {
 			while (this.parkingSlots.get(i).status != SlotStatus.Free) {
 				i++;
 			}
-			this.parkingSlots.get(i).endRide(ride.bicycle);
+			this.parkingSlots.get(i).addBicycle(ride.bicycle);
 			ride.endTime = new Date();
 			ride.arrival = this;
 			ride.cost = ride.user.card.computeCost(ride);
@@ -278,6 +314,9 @@ public class Station {
 				ride.user.timeCredit += 300;
 			}
 			this.returns += 1;
+		}
+		else {
+			System.out.println("This station cannot accomodate any more bikes");
 		}
 		
 	}

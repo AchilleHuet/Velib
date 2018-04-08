@@ -53,22 +53,6 @@ public class ParkingSlot {
 	public void addOperation(Operation operation) {
 		this.history.add(operation);
 	}
-
-	/**
-	 * remove the bicycle from an occupied parking slot
-	 */
-	public void RemoveBicycle() {
-		if (this.status == SlotStatus.Occupied) {
-			this.status = SlotStatus.Free;
-			this.bicycle = null;
-		}
-		else if (this.status == SlotStatus.Free){
-			System.out.println("This parking slot has no bike to remove");
-		}
-		else {
-			System.out.println("This parking slot is out of order");
-		}
-	}
 	
 	/**
 	 * add a bicycle to a free parking slot
@@ -78,6 +62,7 @@ public class ParkingSlot {
 		if (this.status == SlotStatus.Free) {
 			this.status = SlotStatus.Occupied;
 			this.bicycle = bicycle;
+			this.addOperation(new Operation(OperationType.addBike, bicycle));
 		}
 		else if (this.status == SlotStatus.Occupied) {
 			System.out.println("This parking slot is already occupied");
@@ -92,18 +77,22 @@ public class ParkingSlot {
 	 * add a bicycle to a free parking slot
 	 * @param bicycle
 	 */
-	public void endRide(Bicycle bicycle) {
-		if (this.status == SlotStatus.Free) {
-			this.status = SlotStatus.Occupied;
-			this.bicycle = bicycle;
+	public Bicycle removeBicycle() {
+		if (this.status == SlotStatus.Occupied) {
+			this.status = SlotStatus.Free;
+			Bicycle bicycle = this.bicycle;
 			this.addOperation(new Operation(OperationType.removeBike, bicycle));
+			this.bicycle = null;
+			return bicycle;
 		}
-		else if (this.status == SlotStatus.Occupied) {
-			System.out.println("This parking slot is already occupied");
+		else if (this.status == SlotStatus.Free) {
+			System.out.println("This parking slot doesn't have a bike");
+			throw new NullPointerException();
 		}
 		else { 
 			//parkingSlot is out of order
 			System.out.println("This parking slot is out of order");
+			throw new NullPointerException();
 		}
 	}
 	

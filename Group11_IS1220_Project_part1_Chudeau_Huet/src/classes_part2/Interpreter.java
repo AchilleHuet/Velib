@@ -156,6 +156,26 @@ public class Interpreter {
 		throw new NullPointerException();
 	}
 	
+	public User findUser(int ID) {
+		for (User user : Reader.users) {
+			if (user.getID() == ID) {
+				return user;
+			}
+		}
+		System.out.println("There is no user with this ID number");
+		throw new NullPointerException();
+	}
+	
+	public Station findStation(VelibPark park, int stationID) {
+		for (Station station : park.getStationsList()) {
+			if (station.getID() == stationID) {
+				return station;
+			}
+		}
+		System.out.println("There is no station with this ID number");
+		throw new NullPointerException();
+	}
+	
 	public void SetOnline(String parkName, String stationID) {
 		
 		VelibPark park = findVelibPark(parkName);
@@ -223,6 +243,10 @@ public class Interpreter {
 	public void RentBike(String userID, String stationID) { 
 		int uID = Integer.parseInt(userID);
 		int sID = Integer.parseInt(stationID);
+		User user = findUser(uID);
+		VelibPark park = user.getPark();
+		Station station = findStation(park, sID);
+		station.startRide(user);
 		
 	}
 		
