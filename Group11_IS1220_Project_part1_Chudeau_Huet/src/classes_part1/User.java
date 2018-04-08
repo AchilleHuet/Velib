@@ -133,7 +133,11 @@ public class User {
 	
 	public void unsuscribe(Station station) {
 		station.removeObserver(this);
-	}	
+	}
+	public VelibPark getPark() {
+		return park;
+	}
+
 	
 	public void planRide(VelibPark park, Policy policy, BicycleType type, Location destination) {
 		Ride ride = new Ride(this, park, policy, type, destination);
