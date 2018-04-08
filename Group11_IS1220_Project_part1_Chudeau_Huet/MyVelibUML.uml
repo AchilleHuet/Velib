@@ -5,12 +5,13 @@
   </packageImport>
   <packagedElement xmi:type="uml:Class" xmi:id="_SJec8BwFEei4tcdJOjX17A" name="Station">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_oa0pABwOEei4tcdJOjX17A" name="parkingSlotsList" type="_bz1pcBwFEei4tcdJOjX17A"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_tNgU4BwOEei4tcdJOjX17A" name="terminal" type="_kH8NoBwFEei4tcdJOjX17A"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_whtQkBwOEei4tcdJOjX17A" name="place" type="_iuyCUBwFEei4tcdJOjX17A"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_zs6BQBwOEei4tcdJOjX17A" name="id">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_ipfqoB1uEeibU5wlSaMVHw" name="statistics"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_E9sLADtoEei7ROau7nbAIw" name="startRide"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_GFNMsDtoEei7ROau7nbAIw" name="endRide"/>
     <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_IMkt8BwQEei4tcdJOjX17A" name="stationStatus" visibility="public">
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_P5JYEBwQEei4tcdJOjX17A" name="on_service"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_RBmN4BwQEei4tcdJOjX17A" name="offline"/>
@@ -32,7 +33,7 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_Y-Q7cB1uEeibU5wlSaMVHw" name="removeBike">
       <ownedParameter xmi:type="uml:Parameter" xmi:id="_c2tzsB1uEeibU5wlSaMVHw" name="bicycle" type="_dlIn8BwFEei4tcdJOjX17A"/>
     </ownedOperation>
-    <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_YXak4BwQEei4tcdJOjX17A" name="state">
+    <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_YXak4BwQEei4tcdJOjX17A" name="status">
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_a5oC8BwQEei4tcdJOjX17A" name="occupied"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_cAp8cBwQEei4tcdJOjX17A" name="free"/>
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_dTkV0BwQEei4tcdJOjX17A" name="out_of_order"/>
@@ -83,12 +84,8 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Gs4EMB1tEeibU5wlSaMVHw" name="credit">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#ELong"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_H-W8IDtnEei7ROau7nbAIw" name="card" type="_LQk3oDtjEei7ROau7nbAIw"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_kTK-MB1uEeibU5wlSaMVHw" name="statistics"/>
-    <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_9OO_gB1sEeibU5wlSaMVHw" name="card">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_AskHkB1tEeibU5wlSaMVHw" name="Vlibre"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_CjS_sB1tEeibU5wlSaMVHw" name="Vmax"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_FV_JwB1tEeibU5wlSaMVHw" name="Null"/>
-    </nestedClassifier>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_hCKvgBwFEei4tcdJOjX17A" name="VelibPark">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_1Z1LMBwQEei4tcdJOjX17A" name="stationsList" type="_SJec8BwFEei4tcdJOjX17A" isOrdered="true"/>
@@ -109,17 +106,46 @@
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_kH8NoBwFEei4tcdJOjX17A" name="Terminal">
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_e-upEB1uEeibU5wlSaMVHw" name="startRide"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_gOSMcB1uEeibU5wlSaMVHw" name="endRide"/>
-  </packagedElement>
-  <packagedElement xmi:type="uml:Dependency" xmi:id="_WGd9AB1wEeibU5wlSaMVHw" client="_SJec8BwFEei4tcdJOjX17A" supplier="_kH8NoBwFEei4tcdJOjX17A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_XqgioB1wEeibU5wlSaMVHw" client="_VxFSQBwEEei4tcdJOjX17A" supplier="_SJec8BwFEei4tcdJOjX17A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_Z1ZF0B1wEeibU5wlSaMVHw" client="_SJec8BwFEei4tcdJOjX17A" supplier="_VxFSQBwEEei4tcdJOjX17A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_bWly0B1wEeibU5wlSaMVHw" client="_SJec8BwFEei4tcdJOjX17A" supplier="_iuyCUBwFEei4tcdJOjX17A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_dZISUB1wEeibU5wlSaMVHw" client="_bz1pcBwFEei4tcdJOjX17A" supplier="_dlIn8BwFEei4tcdJOjX17A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_gZtucB1wEeibU5wlSaMVHw" client="_gN9EUBwFEei4tcdJOjX17A" supplier="_iuyCUBwFEei4tcdJOjX17A"/>
-  <packagedElement xmi:type="uml:Dependency" xmi:id="_mf4bcB1wEeibU5wlSaMVHw" client="_e9AZ0BwFEei4tcdJOjX17A" supplier="_gN9EUBwFEei4tcdJOjX17A"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_mf4bcB1wEeibU5wlSaMVHw" client="_VxFSQBwEEei4tcdJOjX17A" supplier="_gN9EUBwFEei4tcdJOjX17A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_nTfCoB1wEeibU5wlSaMVHw" client="_e9AZ0BwFEei4tcdJOjX17A" supplier="_VxFSQBwEEei4tcdJOjX17A"/>
   <packagedElement xmi:type="uml:Dependency" xmi:id="_oqgf8B1wEeibU5wlSaMVHw" client="_e9AZ0BwFEei4tcdJOjX17A" supplier="_SJec8BwFEei4tcdJOjX17A"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_x_w6sDtiEei7ROau7nbAIw" name="Operation">
+    <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_6l5DADtiEei7ROau7nbAIw" name="OperationType"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_LQk3oDtjEei7ROau7nbAIw" name="Card" isAbstract="true">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_hQj9ADtjEei7ROau7nbAIw" name="computeCost"/>
+    <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_UyDN4DtjEei7ROau7nbAIw" name="CardType"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ZeKXsDtjEei7ROau7nbAIw" name="Vlibre">
+    <generalization xmi:type="uml:Generalization" xmi:id="_51qjIDtmEei7ROau7nbAIw" general="_LQk3oDtjEei7ROau7nbAIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_aeOGgDtjEei7ROau7nbAIw" name="Vmax">
+    <generalization xmi:type="uml:Generalization" xmi:id="_5CxGkDtmEei7ROau7nbAIw" general="_LQk3oDtjEei7ROau7nbAIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_bTWXsDtjEei7ROau7nbAIw" name="NoCard">
+    <generalization xmi:type="uml:Generalization" xmi:id="_5evQ4DtmEei7ROau7nbAIw" general="_LQk3oDtjEei7ROau7nbAIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_OjB08DtlEei7ROau7nbAIw" name="Policy">
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_iWC3ADtmEei7ROau7nbAIw" name="planRide"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_wTCLwDtlEei7ROau7nbAIw" name="NormalPolicy">
+    <generalization xmi:type="uml:Generalization" xmi:id="_0SXSoDtmEei7ROau7nbAIw" general="_OjB08DtlEei7ROau7nbAIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_x_Y_4DtlEei7ROau7nbAIw" name="PreserveUniformity">
+    <generalization xmi:type="uml:Generalization" xmi:id="_ztz0EDtmEei7ROau7nbAIw" general="_OjB08DtlEei7ROau7nbAIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_zfikADtlEei7ROau7nbAIw" name="PreferPlusStations">
+    <generalization xmi:type="uml:Generalization" xmi:id="_1MhNwDtmEei7ROau7nbAIw" general="_OjB08DtlEei7ROau7nbAIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_1ur8IDtlEei7ROau7nbAIw" name="AvoidPlusStations">
+    <generalization xmi:type="uml:Generalization" xmi:id="_0s_ZIDtmEei7ROau7nbAIw" general="_OjB08DtlEei7ROau7nbAIw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_I-ZSQDtmEei7ROau7nbAIw" client="_bz1pcBwFEei4tcdJOjX17A" supplier="_x_w6sDtiEei7ROau7nbAIw"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_o3z64DtmEei7ROau7nbAIw" client="_VxFSQBwEEei4tcdJOjX17A" supplier="_OjB08DtlEei7ROau7nbAIw"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_7OPfoDtmEei7ROau7nbAIw" client="_VxFSQBwEEei4tcdJOjX17A _FLd38BwREei4tcdJOjX17A" supplier="_LQk3oDtjEei7ROau7nbAIw"/>
 </uml:Model>
