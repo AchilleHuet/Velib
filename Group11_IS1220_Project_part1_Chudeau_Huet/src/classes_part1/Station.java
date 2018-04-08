@@ -10,7 +10,6 @@ public class Station {
 	Location location;
 	public StationStatus status;
 	StationType type;
-	Terminal terminal;
 	public long rents;
 	public long returns;
 	double occupationRate;
@@ -125,12 +124,7 @@ public class Station {
 	public void setType(StationType type) {
 		this.type = type;
 	}
-	public Terminal getTerminal() {
-		return terminal;
-	}
-	public void setTerminal(Terminal terminal) {
-		this.terminal = terminal;
-	}
+	
 	public long getRents() {
 		return rents;
 	}
